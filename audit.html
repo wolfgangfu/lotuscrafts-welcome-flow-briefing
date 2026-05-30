@@ -133,9 +133,9 @@
     <h3>Die 3 gr&ouml;ssten Hebel</h3>
     <table>
       <tr><th>#</th><th>Hebel</th><th>Impact/Jahr</th><th>Typ</th></tr>
-      <tr><td>1</td><td><strong>K&auml;ufer &lt;90d in Campaigns aufnehmen</strong> (5-Minuten-Fix)</td><td style="color:#AC7800;font-weight:600;">+&euro;45&ndash;90k</td><td>Segment-Fehler</td></tr>
+      <tr><td>1</td><td><strong>Post-Purchase konsolidieren</strong> (9 Flows &rarr; 1, 53 &rarr; Template-Logik)</td><td style="color:#AC7800;font-weight:600;">+&euro;72&ndash;118k</td><td>Strukturprojekt</td></tr>
       <tr><td>2</td><td><strong>Non-DOI Post-Purchase Flow</strong> (Bestandskundenprivileg + DOI-Conversion)</td><td style="color:#AC7800;font-weight:600;">+&euro;65&ndash;75k</td><td>~39k K&auml;ufer/Jahr ohne Marketing</td></tr>
-      <tr><td>3</td><td><strong>Post-Purchase konsolidieren</strong> (9 Flows &rarr; 1)</td><td style="color:#AC7800;font-weight:600;">+&euro;72&ndash;118k</td><td>Strukturprojekt</td></tr>
+      <tr><td>3</td><td><strong>DOI-K&auml;ufer &lt;90d in Campaigns aufnehmen</strong> (5-Minuten-Fix)</td><td style="color:#AC7800;font-weight:600;">+&euro;25&ndash;45k</td><td>Segment-Fehler (nur ~3&ndash;5k DOI-K&auml;ufer betroffen)</td></tr>
     </table>
   </div>
 
@@ -168,7 +168,7 @@
       <tr><th>Finding</th><th>Etappe</th><th>Impact</th><th>Status</th></tr>
       <tr><td>Welcome-Revenue &minus;2,5% YoY (&minus;44% Mar-Mai 2026)</td><td>E1</td><td>Akut + strukturell</td><td><span class="badge badge-red">Upstream</span></td></tr>
       <tr><td><strong>~39.000 K&auml;ufer/Jahr ohne DOI = kein Marketing nach Kauf</strong></td><td>E2*</td><td><strong>&euro;65&ndash;75k/Jahr</strong></td><td><span class="badge badge-red">Strukturell</span></td></tr>
-      <tr><td><strong>K&auml;ufer &lt;90d aus 98,6% aller Campaigns ausgeschlossen</strong></td><td>E3</td><td>&euro;45&ndash;90k/Jahr</td><td><span class="badge badge-red">Segment-Fehler</span></td></tr>
+      <tr><td><strong>DOI-K&auml;ufer &lt;90d aus 98,6% aller Campaigns ausgeschlossen</strong> (nur ~3&ndash;5k DOI-Profile betroffen, nicht 78k)</td><td>E3</td><td>&euro;25&ndash;45k/Jahr</td><td><span class="badge badge-gold">Segment-Fehler</span></td></tr>
       <tr><td>April-2026 Signup-Cliff (94 statt 2.176 Subs)</td><td>E4</td><td>~&euro;96k/Quartal</td><td><span class="badge badge-red">Vermutl. technisch</span></td></tr>
       <tr><td>Bounce-Rate 2026: 0,96% (3,5x h&ouml;her)</td><td>E5</td><td>Reputations-Risiko</td><td><span class="badge badge-red">7,5% Campaigns</span></td></tr>
       <tr><td>Kein Sunset-Flow aktiv</td><td>E5/12</td><td>&euro;1.200&ndash;3.600 + Deliverability</td><td><span class="badge badge-red">3 Jahre Draft</span></td></tr>
@@ -229,7 +229,7 @@
     <h3>Quick Wins (hoher Impact, geringer Aufwand)</h3>
     <table>
       <tr><th>#</th><th>Massnahme</th><th>Impact/Jahr</th><th>Aufwand</th></tr>
-      <tr><td>1</td><td>&bdquo;Engaged Customers &lt;90d&ldquo; in Campaign-Inclusion</td><td style="color:#AC7800;">+&euro;45&ndash;90k</td><td>5 Minuten</td></tr>
+      <tr><td>1</td><td>&bdquo;Engaged Customers &lt;90d&ldquo; in Campaign-Inclusion (betrifft ~3&ndash;5k DOI-K&auml;ufer)</td><td style="color:#AC7800;">+&euro;25&ndash;45k</td><td>5 Minuten</td></tr>
       <tr><td>2</td><td>April-2026-Cliff diagnostizieren (UI + Shopify-Sync)</td><td style="color:#AC7800;">Stoppt ~&euro;96k/Q</td><td>1 Stunde</td></tr>
       <tr><td>3</td><td>Cart-Flow Timing auf +1h</td><td style="color:#AC7800;">+&euro;12k</td><td>5 Minuten</td></tr>
       <tr><td>4</td><td>Gratis-Versand in Cart-Emails (AOV &euro;68,20 vs. &euro;69)</td><td style="color:#AC7800;">+&euro;10k</td><td>30 Min</td></tr>
@@ -237,7 +237,7 @@
       <tr><td>6</td><td>DKIM/SPF/DMARC im UI verifizieren</td><td style="color:#AC7800;">Sicherheit</td><td>15 Min</td></tr>
       <tr><td>7</td><td><strong>Shopify-Checkout-Text pr&uuml;fen</strong> (Bestandskundenprivileg-Hinweis f&uuml;r Non-DOI PPF)</td><td style="color:#AC7800;">Rechtsgrundlage</td><td>30 Min + Rechtsberatung</td></tr>
     </table>
-    <p style="color:#AC7800;font-weight:600;margin-top:12px;font-size:14px;">Quick-Win-Summe: +&euro;72&ndash;117k/Jahr + Stopp des laufenden Verlusts</p>
+    <p style="color:#AC7800;font-weight:600;margin-top:12px;font-size:14px;">Quick-Win-Summe: +&euro;52&ndash;77k/Jahr + Stopp des laufenden Verlusts</p>
   </div>
 
   <div class="card">
@@ -291,7 +291,7 @@
     <div class="card">
       <table>
         <tr><th>Woche</th><th>Was</th><th>Wer</th><th>Impact</th></tr>
-        <tr><td>W1</td><td>K&auml;ufer-Segment in Campaign-Inclusion</td><td>CRM</td><td style="color:#AC7800;font-weight:600;">+&euro;45&ndash;90k</td></tr>
+        <tr><td>W1</td><td>DOI-K&auml;ufer-Segment in Campaign-Inclusion (~3&ndash;5k Profile)</td><td>CRM</td><td style="color:#AC7800;font-weight:600;">+&euro;25&ndash;45k</td></tr>
         <tr><td>W1</td><td>April-2026 Signup-Cliff diagnostizieren</td><td>CRM + Dev</td><td style="color:#AC7800;font-weight:600;">Stoppt Verlust</td></tr>
         <tr><td>W1</td><td>Cart-Flow: Timing +1h, Versand, Zahlungsarten</td><td>CRM</td><td>+&euro;27k</td></tr>
         <tr><td>W1</td><td>DKIM/SPF/DMARC + Bounce-Ursache Feb 2026</td><td>CRM</td><td>Reputation</td></tr>
@@ -344,16 +344,16 @@
 
   <div class="metrics-row">
     <div class="metric-card">
-      <div class="metric-value">+&euro;275k</div>
-      <div class="metric-label">Konservativ (+16,3%)</div>
+      <div class="metric-value">+&euro;255k</div>
+      <div class="metric-label">Konservativ (+15,2%)</div>
     </div>
     <div class="metric-card" style="border:2px solid #AC7800;">
-      <div class="metric-value gold">+&euro;380k</div>
-      <div class="metric-label">Realistisch (+22,6%)</div>
+      <div class="metric-value gold">+&euro;350k</div>
+      <div class="metric-label">Realistisch (+20,8%)</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">+&euro;500k</div>
-      <div class="metric-label">Best Case (+29,7%)</div>
+      <div class="metric-value">+&euro;466k</div>
+      <div class="metric-label">Best Case (+27,7%)</div>
     </div>
   </div>
 
@@ -361,7 +361,7 @@
     <h3>Aufschl&uuml;sselung nach Hebel</h3>
     <table>
       <tr><th>Hebel</th><th>Konservativ</th><th>Realistisch</th><th>Best Case</th></tr>
-      <tr><td>K&auml;ufer in Campaigns</td><td>&euro;45.000</td><td>&euro;67.000</td><td>&euro;90.000</td></tr>
+      <tr><td>DOI-K&auml;ufer in Campaigns (~3&ndash;5k)</td><td>&euro;25.000</td><td>&euro;35.000</td><td>&euro;45.000</td></tr>
       <tr style="background:#faf0e0;"><td><strong>Non-DOI Post-Purchase Flow</strong></td><td><strong>&euro;50.000</strong></td><td><strong>&euro;65.000</strong></td><td><strong>&euro;75.000</strong></td></tr>
       <tr><td>Post-Purchase Konsolidierung (DOI)</td><td>&euro;72.000</td><td>&euro;95.000</td><td>&euro;118.000</td></tr>
       <tr><td>Upstream-Fix (Signup-Cliff)</td><td>&euro;24.000</td><td>&euro;48.000</td><td>&euro;96.000</td></tr>
@@ -372,13 +372,13 @@
       <tr><td>Reaktivierungs-Campaigns</td><td>&euro;5.000</td><td>&euro;7.000</td><td>&euro;10.000</td></tr>
       <tr><td>Sunset + Content-CTAs</td><td>&euro;4.200</td><td>&euro;7.400</td><td>&euro;11.600</td></tr>
       <tr style="border-top:2px solid #222;font-weight:600;">
-        <td>Brutto</td><td>&euro;285.200</td><td>&euro;421.400</td><td>&euro;606.600</td>
+        <td>Brutto</td><td>&euro;265.200</td><td>&euro;389.400</td><td>&euro;561.600</td>
       </tr>
       <tr style="color:#999;">
-        <td>Abzug &Uuml;berlappung (&minus;10&ndash;15%)</td><td>&minus;&euro;10.000</td><td>&minus;&euro;41.000</td><td>&minus;&euro;106.000</td>
+        <td>Abzug &Uuml;berlappung (&minus;10&ndash;15%)</td><td>&minus;&euro;10.000</td><td>&minus;&euro;39.000</td><td>&minus;&euro;96.000</td>
       </tr>
       <tr style="font-weight:700;font-size:14px;">
-        <td>NETTO</td><td style="color:#AC7800;">&euro;275.200</td><td style="color:#AC7800;">&euro;380.400</td><td style="color:#AC7800;">&euro;500.600</td>
+        <td>NETTO</td><td style="color:#AC7800;">&euro;255.200</td><td style="color:#AC7800;">&euro;350.400</td><td style="color:#AC7800;">&euro;465.600</td>
       </tr>
     </table>
   </div>
@@ -399,7 +399,7 @@
       <tr><td>1</td><td>YoY Account-Diagnose</td><td><code>etappe1_yoy_diagnose.md</code></td><td>Welcome-Revenue &minus;2,5% YoY. Q1/Q2-2026 akut + strukturell.</td></tr>
       <tr><td>2</td><td>Non-DOI Potential</td><td><code>etappe2_non_doi.md</code></td><td>~39k K&auml;ufer/Jahr ohne DOI. Non-DOI PPF = Haupthebel.</td></tr>
       <tr><td>2*</td><td style="color:#AC7800;">Upstream-Korrektur + Non-DOI PPF</td><td><code style="color:#AC7800;">etappe_upstream_korrektur.md</code></td><td style="color:#AC7800;"><strong>Korrigiert E1+E2. Non-DOI PPF Konzept (4 Emails, Bestandskundenprivileg).</strong></td></tr>
-      <tr><td>3</td><td>Segment-Audit</td><td><code>etappe3_segmente.md</code></td><td><strong>K&auml;ufer aus 98,6% Campaigns ausgeschlossen.</strong></td></tr>
+      <tr><td>3</td><td>Segment-Audit</td><td><code>etappe3_segmente.md</code></td><td>DOI-K&auml;ufer (~3&ndash;5k) aus 98,6% Campaigns ausgeschlossen. +&euro;25&ndash;45k.</td></tr>
       <tr><td>4</td><td>Listenwachstum</td><td><code>etappe4_upstream.md</code></td><td>April-2026-Cliff. Forms seit 6 Jahren nicht aktualisiert.</td></tr>
       <tr><td>5</td><td>Deliverability</td><td><code>etappe5_hygiene.md</code></td><td>Bounce 3,5x h&ouml;her. 7,5%-Campaigns. Kein Sunset.</td></tr>
       <tr><td>6</td><td>Campaigns</td><td><code>etappe6_campaigns.md</code></td><td>RPR &minus;43% (Kalender). 0 Reaktivierung seit 2025.</td></tr>
