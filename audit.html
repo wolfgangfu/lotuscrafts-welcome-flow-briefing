@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Lotuscrafts Klaviyo Audit 2026 — Executive Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#f8f8f6;line-height:1.6;}
+  .page{max-width:1100px;margin:0 auto;padding:40px 32px;}
+
+  /* Header */
+  .doc-header{text-align:center;padding:48px 0 40px 0;border-bottom:2px solid #222;margin-bottom:48px;}
+  .doc-header h1{font-size:30px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px;}
+  .doc-header .subtitle{font-size:15px;color:#666;margin-bottom:16px;}
+  .doc-header .meta{font-size:12px;color:#999;}
+
+  /* Section headers */
+  .section{margin-bottom:48px;}
+  .section-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #222;}
+  .section-num{background:#222;color:#fff;font-size:16px;font-weight:700;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section-title{font-size:20px;font-weight:700;}
+
+  /* Cards */
+  .card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:24px 28px;margin-bottom:16px;}
+  .card h3{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#AC7800;margin-bottom:12px;font-weight:600;}
+  .card p{font-size:14px;color:#333;margin-bottom:8px;}
+
+  /* Key metrics row */
+  .metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px;}
+  .metric-card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:20px 24px;text-align:center;}
+  .metric-value{font-size:28px;font-weight:700;color:#222;margin-bottom:4px;}
+  .metric-value.green{color:#2a7a2a;}
+  .metric-value.red{color:#cc3333;}
+  .metric-value.gold{color:#AC7800;}
+  .metric-label{font-size:11px;color:#666;text-transform:uppercase;letter-spacing:1px;}
+
+  /* Tables */
+  table{width:100%;border-collapse:collapse;margin-bottom:8px;font-size:13px;}
+  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#666;padding:8px 6px;border-bottom:2px solid #222;}
+  td{padding:7px 6px;border-bottom:1px solid #f0f0f0;vertical-align:top;}
+  tr:hover td{background:#faf8f4;}
+
+  /* Status badges */
+  .badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;letter-spacing:0.5px;text-transform:uppercase;}
+  .badge-red{background:#fde8e8;color:#cc3333;}
+  .badge-gold{background:#faf0e0;color:#AC7800;}
+  .badge-green{background:#e8f5e8;color:#2a7a2a;}
+  .badge-gray{background:#f0f0f0;color:#666;}
+
+  /* Highlight boxes */
+  .highlight{border-radius:8px;padding:24px 28px;margin-bottom:16px;}
+  .highlight-dark{background:#222;color:#fff;}
+  .highlight-dark h3{color:#AC7800;}
+  .highlight-dark td{color:#ccc;border-bottom-color:#333;}
+  .highlight-dark th{color:#999;border-bottom-color:#555;}
+  .highlight-warn{background:#fdf0f0;border:1px solid #e0c0c0;}
+  .highlight-good{background:#f0f9f0;border:1px solid #c0e0c0;}
+
+  /* Two columns */
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:800px){.two-col{grid-template-columns:1fr;}}
+
+  /* Timeline */
+  .timeline-phase{margin-bottom:24px;}
+  .timeline-label{display:inline-block;background:#222;color:#AC7800;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+
+  /* Footer */
+  .report-footer{text-align:center;font-size:11px;color:#999;padding-top:32px;border-top:1px solid #e0e0e0;margin-top:48px;}
+
+  /* Print */
+  @media print{
+    .page{padding:20px;}
+    .metric-card,.card,.highlight{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<div class="doc-header">
+  <h1>Lotuscrafts Klaviyo Audit 2026</h1>
+  <div class="subtitle">Executive Report — 13 Etappen, 209 Campaigns, 32 Flows, 16 Segmente</div>
+  <div class="meta">Datenquelle: Klaviyo API (Rev. 2024-10-15) &middot; Bewertung: ecomhouse DACH-Standards &middot; Stand: 30.05.2026</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. EXECUTIVE SUMMARY                                          -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Executive Summary</div>
+  </div>
+
+  <!-- Key metrics -->
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-value gold">&euro;1,68M</div>
+      <div class="metric-label">Klaviyo-Revenue 2025</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value green">+29,3%</div>
+      <div class="metric-label">Flow-Revenue YoY (bereinigt)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value red">&minus;39,4%</div>
+      <div class="metric-label">Flow-Revenue Mar-Mai 2026</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value red">&minus;45%</div>
+      <div class="metric-label">Welcome-Flow Recipients Q1/Q2</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Gesamtbild</h3>
+    <table>
+      <tr><th>Kanal</th><th>2024</th><th>2025</th><th>YoY</th><th>Bewertung</th></tr>
+      <tr><td>Flow-Revenue</td><td>&euro;1.201.510</td><td>&euro;1.276.730</td><td>+6,3%</td><td><span class="badge badge-green">Stabil</span></td></tr>
+      <tr><td>Campaign-Revenue</td><td>&euro;453.917</td><td>&euro;407.911</td><td>&minus;10,1%</td><td><span class="badge badge-gold">Leicht r&uuml;ckl.</span></td></tr>
+      <tr><td style="font-weight:600;">Gesamt</td><td style="font-weight:600;">&euro;1.655.427</td><td style="font-weight:600;">&euro;1.684.641</td><td style="font-weight:600;">+1,8%</td><td><span class="badge badge-gold">Stagnation</span></td></tr>
+    </table>
+    <p style="margin-top:12px;">Der wahrgenommene Einbruch ist ein <strong>Q1/Q2-2026-Ph&auml;nomen</strong>, kein Jahrestrend. 90% kommen aus einem Upstream-Problem: weniger Newsletter-Anmeldungen f&uuml;ttern den Welcome-Flow.</p>
+  </div>
+
+  <!-- Top 3 Hebel -->
+  <div class="highlight highlight-dark">
+    <h3>Die 3 gr&ouml;ssten Hebel</h3>
+    <table>
+      <tr><th>#</th><th>Hebel</th><th>Impact/Jahr</th><th>Typ</th></tr>
+      <tr><td>1</td><td><strong>K&auml;ufer &lt;90d in Campaigns aufnehmen</strong> (5-Minuten-Fix)</td><td style="color:#AC7800;font-weight:600;">+&euro;45&ndash;90k</td><td>Segment-Fehler</td></tr>
+      <tr><td>2</td><td><strong>April-2026 Signup-Cliff diagnostizieren + beheben</strong></td><td style="color:#AC7800;font-weight:600;">Stoppt ~&euro;96k/Q</td><td>Technisch</td></tr>
+      <tr><td>3</td><td><strong>Post-Purchase konsolidieren</strong> (9 Flows &rarr; 1)</td><td style="color:#AC7800;font-weight:600;">+&euro;72&ndash;118k</td><td>Strukturprojekt</td></tr>
+    </table>
+  </div>
+
+  <!-- Was gesund ist -->
+  <div class="highlight highlight-good">
+    <h3 style="color:#2a7a2a;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">Was gesund ist</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;font-size:13px;">
+      <div>&#10003; Welcome E1: RPR &euro;35,71, OR 84%</div>
+      <div>&#10003; Open Rates 68&ndash;70% (exzellent)</div>
+      <div>&#10003; Spam Complaints &lt;0,01%</div>
+      <div>&#10003; Abandoned Cart: &euro;104k Revenue</div>
+      <div>&#10003; Listenwachstum: 34k Subs/Jahr</div>
+      <div>&#10003; Brand Voice: konsistent</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. FINDINGS                                                    -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Alle Findings</div>
+  </div>
+
+  <div class="card">
+    <h3>Account-Level (Etappen 1&ndash;6)</h3>
+    <table>
+      <tr><th>Finding</th><th>Etappe</th><th>Impact</th><th>Status</th></tr>
+      <tr><td>Q1/Q2 2026 Flow-Revenue &minus;39,4%</td><td>E1</td><td>Akut</td><td><span class="badge badge-red">90% Upstream</span></td></tr>
+      <tr><td><strong>K&auml;ufer &lt;90d aus 98,6% aller Campaigns ausgeschlossen</strong></td><td>E3</td><td>&euro;45&ndash;90k/Jahr</td><td><span class="badge badge-red">Segment-Fehler</span></td></tr>
+      <tr><td>April-2026 Signup-Cliff (94 statt 2.176 Subs)</td><td>E4</td><td>~&euro;96k/Quartal</td><td><span class="badge badge-red">Vermutl. technisch</span></td></tr>
+      <tr><td>Bounce-Rate 2026: 0,96% (3,5x h&ouml;her)</td><td>E5</td><td>Reputations-Risiko</td><td><span class="badge badge-red">7,5% Campaigns</span></td></tr>
+      <tr><td>Kein Sunset-Flow aktiv</td><td>E5/12</td><td>&euro;1.200&ndash;3.600 + Deliverability</td><td><span class="badge badge-red">3 Jahre Draft</span></td></tr>
+      <tr><td>Campaign-RPR 2026 &minus;43% vs 2025</td><td>E6</td><td>Kalender-Problem</td><td><span class="badge badge-gold">Saisonal</span></td></tr>
+      <tr><td>0 Reaktivierungs-Campaigns seit 2025</td><td>E6</td><td>&euro;5&ndash;10k/Jahr</td><td><span class="badge badge-red">Gestoppt</span></td></tr>
+      <tr><td>26.496 Non-DOI Profile ungenutzt</td><td>E2</td><td>&euro;30&ndash;65k/Jahr</td><td><span class="badge badge-gold">Rechtspr&uuml;fung</span></td></tr>
+      <tr><td>Exit-Intent-Forms seit 2020 nicht aktualisiert</td><td>E4</td><td>+&euro;50&ndash;100k/Jahr</td><td><span class="badge badge-red">6 Jahre alt</span></td></tr>
+      <tr><td>Kein A/B-Test auf Signup-Forms</td><td>E4</td><td>+5&ndash;15% Conversion</td><td><span class="badge badge-gold">Nie eingerichtet</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Flow-Level (Etappen 7&ndash;12)</h3>
+    <table>
+      <tr><th>Flow</th><th>SOLL</th><th>IST</th><th>RPR</th><th>Top-Gap</th><th>Prio</th></tr>
+      <tr><td>Welcome</td><td>6 Emails</td><td>5 (ohne DOI)</td><td>&euro;10,43</td><td>E2/E4/E5 verfehlen Funktion</td><td><span class="badge badge-red">Hoch</span></td></tr>
+      <tr><td>Post-Purchase</td><td>4&ndash;5</td><td><strong>84 in 9 Flows</strong></td><td>&euro;0,21</td><td>53 Cross-Sell-Varianten, 5&ndash;15x unter Benchmark</td><td><span class="badge badge-red">Kritisch</span></td></tr>
+      <tr><td>Cart Abandonment</td><td>3</td><td>9</td><td>&euro;7,57</td><td>Timing +25h statt +1h, Versand-Hebel</td><td><span class="badge badge-red">Hoch</span></td></tr>
+      <tr><td>Browse Abandonment</td><td>2</td><td>7+4</td><td>&euro;0,93</td><td>Social Proof fehlt, Suppression unklar</td><td><span class="badge badge-gold">Mittel</span></td></tr>
+      <tr><td>Winback</td><td>3+3</td><td><strong>0</strong></td><td>&ndash;</td><td>Komplett fehlend. 6.421 Churn-Risks.</td><td><span class="badge badge-red">Hoch</span></td></tr>
+      <tr><td>Sunset</td><td>2</td><td>0 (Draft)</td><td>&ndash;</td><td>Nie aktiviert. ~9.300 inaktive Profile.</td><td><span class="badge badge-red">Hoch</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. MASSNAHMENPLAN                                              -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Massnahmenplan: Impact &times; Aufwand</div>
+  </div>
+
+  <div class="highlight highlight-dark">
+    <h3>Quick Wins (hoher Impact, geringer Aufwand)</h3>
+    <table>
+      <tr><th>#</th><th>Massnahme</th><th>Impact/Jahr</th><th>Aufwand</th></tr>
+      <tr><td>1</td><td>&bdquo;Engaged Customers &lt;90d&ldquo; in Campaign-Inclusion</td><td style="color:#AC7800;">+&euro;45&ndash;90k</td><td>5 Minuten</td></tr>
+      <tr><td>2</td><td>April-2026-Cliff diagnostizieren (UI + Shopify-Sync)</td><td style="color:#AC7800;">Stoppt ~&euro;96k/Q</td><td>1 Stunde</td></tr>
+      <tr><td>3</td><td>Cart-Flow Timing auf +1h</td><td style="color:#AC7800;">+&euro;12k</td><td>5 Minuten</td></tr>
+      <tr><td>4</td><td>Gratis-Versand in Cart-Emails (AOV &euro;68,20 vs. &euro;69)</td><td style="color:#AC7800;">+&euro;10k</td><td>30 Min</td></tr>
+      <tr><td>5</td><td>Zahlungsarten + 30-Tage-R&uuml;ckgabe in Cart-Emails</td><td style="color:#AC7800;">+&euro;5k</td><td>30 Min</td></tr>
+      <tr><td>6</td><td>DKIM/SPF/DMARC im UI verifizieren</td><td style="color:#AC7800;">Sicherheit</td><td>15 Min</td></tr>
+    </table>
+    <p style="color:#AC7800;font-weight:600;margin-top:12px;font-size:14px;">Quick-Win-Summe: +&euro;72&ndash;117k/Jahr + Stopp des laufenden Verlusts</p>
+  </div>
+
+  <div class="card">
+    <h3>Strategische Projekte (hoher Impact, hoher Aufwand)</h3>
+    <table>
+      <tr><th>#</th><th>Massnahme</th><th>Impact/Jahr</th><th>Aufwand</th></tr>
+      <tr><td>7</td><td>Post-Purchase konsolidieren (9 Flows &rarr; 1, 53 &rarr; Template-Logik)</td><td>+&euro;72&ndash;118k</td><td>2&ndash;3 Wochen</td></tr>
+      <tr><td>8</td><td>Welcome-Flow E2/E4/E5 neu (Social Proof, Einwand, Last Chance)</td><td>+&euro;51k</td><td>1&ndash;2 Wochen</td></tr>
+      <tr><td>9</td><td>Exit-Intent-Forms aktualisieren + A/B-Test</td><td>+&euro;50&ndash;100k</td><td>1&ndash;2 Tage</td></tr>
+      <tr><td>10</td><td>Winback-Flow aufsetzen (2 Versionen nach LTV)</td><td>+&euro;10&ndash;27k</td><td>1 Woche</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Hygiene-Massnahmen</h3>
+    <table>
+      <tr><th>#</th><th>Massnahme</th><th>Impact</th><th>Aufwand</th></tr>
+      <tr><td>11</td><td>Sunset-Flow aufsetzen + Batch</td><td>Deliverability + &euro;1.200&ndash;3.600 Einsparung</td><td>1 Tag</td></tr>
+      <tr><td>12</td><td>B2B-Listen bereinigen (3,9&ndash;7,2% Bounce)</td><td>Bounce-Rate senken</td><td>1 Stunde</td></tr>
+      <tr><td>13</td><td>Bounce-Ursache Feb 2026 untersuchen</td><td>Reputations-Schutz</td><td>2 Stunden</td></tr>
+      <tr><td>14</td><td>Sekund&auml;r-CTA in Content-Campaigns</td><td>RPR &euro;0,067 &rarr; &euro;0,10+</td><td>Fortlaufend</td></tr>
+      <tr><td>15</td><td>Legacy-Properties l&ouml;schen (MailChimp ID/Rating)</td><td>Sauberkeit</td><td>1 Stunde</td></tr>
+      <tr><td>16</td><td>Alten Cart-DE-Pfad deaktivieren</td><td>Wartbarkeit</td><td>5 Minuten</td></tr>
+      <tr><td>17</td><td>Yogablock-Tutorial reparieren (0 Recipients)</td><td>Content f&uuml;r Block-K&auml;ufer</td><td>30 Minuten</td></tr>
+    </table>
+  </div>
+
+  <div class="card" style="background:#faf8f4;">
+    <h3>Bewusst nicht priorisieren</h3>
+    <table>
+      <tr><td><strong>Non-DOI Reaktivierung</strong></td><td>Erst Rechtspr&uuml;fung, dann handeln. Nebenschauplatz vs. Upstream-Fix.</td></tr>
+      <tr><td><strong>SMS-Kanal</strong></td><td>Erst Email-System reparieren, dann Kanal erweitern.</td></tr>
+      <tr><td><strong>Browse-Abandonment &uuml;berarbeiten</strong></td><td>Funktioniert und w&auml;chst (+67% YoY). Nice-to-have.</td></tr>
+      <tr><td><strong>Empfehlungsprogramm</strong></td><td>Mittelfristiges Projekt, nicht akut.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. 30/60/90 TAGE                                               -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">30 / 60 / 90-Tage-Plan</div>
+  </div>
+
+  <div class="timeline-phase">
+    <div class="timeline-label">Tage 1&ndash;30: Quick Wins + Diagnose</div>
+    <div class="card">
+      <table>
+        <tr><th>Woche</th><th>Was</th><th>Wer</th><th>Impact</th></tr>
+        <tr><td>W1</td><td>K&auml;ufer-Segment in Campaign-Inclusion</td><td>CRM</td><td style="color:#AC7800;font-weight:600;">+&euro;45&ndash;90k</td></tr>
+        <tr><td>W1</td><td>April-2026 Signup-Cliff diagnostizieren</td><td>CRM + Dev</td><td style="color:#AC7800;font-weight:600;">Stoppt Verlust</td></tr>
+        <tr><td>W1</td><td>Cart-Flow: Timing +1h, Versand, Zahlungsarten</td><td>CRM</td><td>+&euro;27k</td></tr>
+        <tr><td>W1</td><td>DKIM/SPF/DMARC + Bounce-Ursache Feb 2026</td><td>CRM</td><td>Reputation</td></tr>
+        <tr><td>W2</td><td>Sunset-Flow bauen + Batch starten</td><td>CRM</td><td>Deliverability</td></tr>
+        <tr><td>W2</td><td>B2B-Listen validieren</td><td>CRM</td><td>Bounce senken</td></tr>
+        <tr><td>W3&ndash;4</td><td>Welcome-Flow v2 finalisieren (Creative-Team)</td><td>Creative</td><td>+&euro;51k</td></tr>
+        <tr><td>W3&ndash;4</td><td>Exit-Intent-Forms aktualisieren + A/B-Test</td><td>CRM + Design</td><td>+&euro;50&ndash;100k</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="timeline-phase">
+    <div class="timeline-label">Tage 31&ndash;60: Strukturprojekte</div>
+    <div class="card">
+      <table>
+        <tr><th>Woche</th><th>Was</th><th>Wer</th><th>Impact</th></tr>
+        <tr><td>W5&ndash;6</td><td>Welcome-Flow v2 live schalten</td><td>CRM</td><td>+&euro;51k</td></tr>
+        <tr><td>W5&ndash;6</td><td>Post-Purchase Konsolidierung starten</td><td>CRM + Copy</td><td>+&euro;72&ndash;118k</td></tr>
+        <tr><td>W7&ndash;8</td><td>Winback-Flow aufsetzen (2 Versionen, LTV-Split)</td><td>CRM + Copy</td><td>+&euro;10&ndash;27k</td></tr>
+        <tr><td>W7&ndash;8</td><td>Engagement-Tier-Segmente aufbauen</td><td>CRM</td><td>Infrastruktur</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="timeline-phase">
+    <div class="timeline-label">Tage 61&ndash;90: Optimierung + Messung</div>
+    <div class="card">
+      <table>
+        <tr><th>Woche</th><th>Was</th><th>Wer</th><th>Impact</th></tr>
+        <tr><td>W9&ndash;10</td><td>Post-Purchase v2 live schalten</td><td>CRM</td><td>+&euro;72&ndash;118k</td></tr>
+        <tr><td>W9&ndash;10</td><td>Sekund&auml;r-CTAs in Content-Campaigns</td><td>CRM + Copy</td><td>RPR steigern</td></tr>
+        <tr><td>W11&ndash;12</td><td>A/B-Tests auswerten</td><td>CRM</td><td>Optimierung</td></tr>
+        <tr><td>W11&ndash;12</td><td>Erste Reaktivierungs-Campaign an Churn-Risks</td><td>CRM</td><td>+&euro;5&ndash;10k</td></tr>
+        <tr><td>W12</td><td><strong>90-Tage-Review: KPIs vs. Baseline</strong></td><td>CRM + Mgmt</td><td>Kontrolle</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 5. RECOVERY-POTENZIAL                                          -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Recovery-Potenzial</div>
+  </div>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-value">+&euro;210k</div>
+      <div class="metric-label">Konservativ (+12,5%)</div>
+    </div>
+    <div class="metric-card" style="border:2px solid #AC7800;">
+      <div class="metric-value gold">+&euro;315k</div>
+      <div class="metric-label">Realistisch (+18,7%)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value">+&euro;428k</div>
+      <div class="metric-label">Best Case (+25,4%)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Aufschl&uuml;sselung nach Hebel</h3>
+    <table>
+      <tr><th>Hebel</th><th>Konservativ</th><th>Realistisch</th><th>Best Case</th></tr>
+      <tr><td>K&auml;ufer in Campaigns</td><td>&euro;45.000</td><td>&euro;67.000</td><td>&euro;90.000</td></tr>
+      <tr><td>Upstream-Fix (Signup-Cliff)</td><td>&euro;24.000</td><td>&euro;48.000</td><td>&euro;96.000</td></tr>
+      <tr><td>Post-Purchase Konsolidierung</td><td>&euro;72.000</td><td>&euro;95.000</td><td>&euro;118.000</td></tr>
+      <tr><td>Welcome-Flow E2/E4/E5</td><td>&euro;30.000</td><td>&euro;40.000</td><td>&euro;51.000</td></tr>
+      <tr><td>Exit-Intent-Forms</td><td>&euro;25.000</td><td>&euro;50.000</td><td>&euro;100.000</td></tr>
+      <tr><td>Cart-Flow Optimierungen</td><td>&euro;20.000</td><td>&euro;25.000</td><td>&euro;28.000</td></tr>
+      <tr><td>Winback-Flow</td><td>&euro;10.000</td><td>&euro;17.000</td><td>&euro;27.000</td></tr>
+      <tr><td>Reaktivierungs-Campaigns</td><td>&euro;5.000</td><td>&euro;7.000</td><td>&euro;10.000</td></tr>
+      <tr><td>Sunset + Content-CTAs</td><td>&euro;4.200</td><td>&euro;7.400</td><td>&euro;11.600</td></tr>
+      <tr style="border-top:2px solid #222;font-weight:600;">
+        <td>Brutto</td><td>&euro;235.200</td><td>&euro;356.400</td><td>&euro;531.600</td>
+      </tr>
+      <tr style="color:#999;">
+        <td>Abzug &Uuml;berlappung (&minus;10&ndash;15%)</td><td>&minus;&euro;25.000</td><td>&minus;&euro;41.000</td><td>&minus;&euro;103.000</td>
+      </tr>
+      <tr style="font-weight:700;font-size:14px;">
+        <td>NETTO</td><td style="color:#AC7800;">&euro;210.200</td><td style="color:#AC7800;">&euro;315.400</td><td style="color:#AC7800;">&euro;428.600</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 6. ANHANG                                                      -->
+<!-- ============================================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">Anhang: Etappen-Reports</div>
+  </div>
+
+  <div class="card">
+    <table>
+      <tr><th>Etappe</th><th>Titel</th><th>Datei</th><th>Top-Finding</th></tr>
+      <tr><td>1</td><td>YoY Account-Diagnose</td><td><code>etappe1_yoy_diagnose.md</code></td><td>Kein Jahres-Einbruch. Q1/Q2-2026. 90% Upstream.</td></tr>
+      <tr><td>2</td><td>Non-DOI Potential</td><td><code>etappe2_non_doi.md</code></td><td>26.496 Profile, ~20k K&auml;ufer. Rechtspr&uuml;fung n&ouml;tig.</td></tr>
+      <tr><td>3</td><td>Segment-Audit</td><td><code>etappe3_segmente.md</code></td><td><strong>K&auml;ufer aus 98,6% Campaigns ausgeschlossen.</strong></td></tr>
+      <tr><td>4</td><td>Listenwachstum</td><td><code>etappe4_upstream.md</code></td><td>April-2026-Cliff. Forms seit 6 Jahren nicht aktualisiert.</td></tr>
+      <tr><td>5</td><td>Deliverability</td><td><code>etappe5_hygiene.md</code></td><td>Bounce 3,5x h&ouml;her. 7,5%-Campaigns. Kein Sunset.</td></tr>
+      <tr><td>6</td><td>Campaigns</td><td><code>etappe6_campaigns.md</code></td><td>RPR &minus;43% (Kalender). 0 Reaktivierung seit 2025.</td></tr>
+      <tr><td>7</td><td>Welcome-Flow</td><td><code>etappe7_welcome.md</code></td><td>E1 exzellent. E2/E4/E5 verfehlen Funktion.</td></tr>
+      <tr><td>8</td><td>Post-Purchase</td><td><code>etappe8_post_purchase.md</code></td><td>9 Flows, 84 Actions, RPR &euro;0,21.</td></tr>
+      <tr><td>9</td><td>Cart Abandonment</td><td><code>etappe9_cart.md</code></td><td>Timing +25h statt +1h. Versand-Hebel ungenutzt.</td></tr>
+      <tr><td>10</td><td>Browse Abandonment</td><td><code>etappe10_browse.md</code></td><td>Funktioniert. Social Proof fehlt.</td></tr>
+      <tr><td>11</td><td>Winback</td><td><code>etappe11_winback.md</code></td><td>Komplett fehlend. 6.421 Churn-Risks.</td></tr>
+      <tr><td>12</td><td>Sunset</td><td><code>etappe12_sunset.md</code></td><td>Draft seit 3 Jahren. ~9.300 inaktive Profile.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  Datengrundlage: Klaviyo API (Rev. 2024-10-15), erhoben 06.05.2026, analysiert 28.&ndash;30.05.2026.<br/>
+  Alle Revenue-Zahlen basieren auf Klaviyo-Attribution (Standard-Fenster).<br/>
+  Bewertungsraster: ecomhouse DACH-DTC-Standards (Files 10&ndash;15).
+</div>
+
+</div>
+</body>
+</html>
