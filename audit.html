@@ -104,8 +104,8 @@
       <div class="metric-label">Klaviyo-Revenue 2025</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value green">+29,3%</div>
-      <div class="metric-label">Flow-Revenue YoY (bereinigt)</div>
+      <div class="metric-value red">&minus;2,5%</div>
+      <div class="metric-label">Welcome-Revenue YoY (korrigiert)</div>
     </div>
     <div class="metric-card">
       <div class="metric-value red">&minus;39,4%</div>
@@ -125,7 +125,7 @@
       <tr><td>Campaign-Revenue</td><td>&euro;453.917</td><td>&euro;407.911</td><td>&minus;10,1%</td><td><span class="badge badge-gold">Leicht r&uuml;ckl.</span></td></tr>
       <tr><td style="font-weight:600;">Gesamt</td><td style="font-weight:600;">&euro;1.655.427</td><td style="font-weight:600;">&euro;1.684.641</td><td style="font-weight:600;">+1,8%</td><td><span class="badge badge-gold">Stagnation</span></td></tr>
     </table>
-    <p style="margin-top:12px;">Der wahrgenommene Einbruch ist ein <strong>Q1/Q2-2026-Ph&auml;nomen</strong>, kein Jahrestrend. 90% kommen aus einem Upstream-Problem: weniger Newsletter-Anmeldungen f&uuml;ttern den Welcome-Flow.</p>
+    <p style="margin-top:12px;">Der Gesamt-Revenue stagniert. Welcome-Flow-Revenue sinkt leicht (&minus;2,5% YoY, &minus;7,8% Recipients). Der akute Einbruch Mar-Mai 2026 (&minus;44%) hat zwei Ursachen: einen <strong>April-2026 Signup-Cliff</strong> (technisch) und ein <strong>strukturelles Problem</strong> &mdash; gesch&auml;tzt ~39.000 Shopify-K&auml;ufer/Jahr melden sich nie zum Newsletter an und verschwinden nach dem Kauf aus dem Marketing.</p>
   </div>
 
   <!-- Top 3 Hebel -->
@@ -134,7 +134,7 @@
     <table>
       <tr><th>#</th><th>Hebel</th><th>Impact/Jahr</th><th>Typ</th></tr>
       <tr><td>1</td><td><strong>K&auml;ufer &lt;90d in Campaigns aufnehmen</strong> (5-Minuten-Fix)</td><td style="color:#AC7800;font-weight:600;">+&euro;45&ndash;90k</td><td>Segment-Fehler</td></tr>
-      <tr><td>2</td><td><strong>April-2026 Signup-Cliff diagnostizieren + beheben</strong></td><td style="color:#AC7800;font-weight:600;">Stoppt ~&euro;96k/Q</td><td>Technisch</td></tr>
+      <tr><td>2</td><td><strong>Non-DOI Post-Purchase Flow</strong> (Bestandskundenprivileg + DOI-Conversion)</td><td style="color:#AC7800;font-weight:600;">+&euro;65&ndash;75k</td><td>~39k K&auml;ufer/Jahr ohne Marketing</td></tr>
       <tr><td>3</td><td><strong>Post-Purchase konsolidieren</strong> (9 Flows &rarr; 1)</td><td style="color:#AC7800;font-weight:600;">+&euro;72&ndash;118k</td><td>Strukturprojekt</td></tr>
     </table>
   </div>
@@ -166,17 +166,40 @@
     <h3>Account-Level (Etappen 1&ndash;6)</h3>
     <table>
       <tr><th>Finding</th><th>Etappe</th><th>Impact</th><th>Status</th></tr>
-      <tr><td>Q1/Q2 2026 Flow-Revenue &minus;39,4%</td><td>E1</td><td>Akut</td><td><span class="badge badge-red">90% Upstream</span></td></tr>
+      <tr><td>Welcome-Revenue &minus;2,5% YoY (&minus;44% Mar-Mai 2026)</td><td>E1</td><td>Akut + strukturell</td><td><span class="badge badge-red">Upstream</span></td></tr>
+      <tr><td><strong>~39.000 K&auml;ufer/Jahr ohne DOI = kein Marketing nach Kauf</strong></td><td>E2*</td><td><strong>&euro;65&ndash;75k/Jahr</strong></td><td><span class="badge badge-red">Strukturell</span></td></tr>
       <tr><td><strong>K&auml;ufer &lt;90d aus 98,6% aller Campaigns ausgeschlossen</strong></td><td>E3</td><td>&euro;45&ndash;90k/Jahr</td><td><span class="badge badge-red">Segment-Fehler</span></td></tr>
       <tr><td>April-2026 Signup-Cliff (94 statt 2.176 Subs)</td><td>E4</td><td>~&euro;96k/Quartal</td><td><span class="badge badge-red">Vermutl. technisch</span></td></tr>
       <tr><td>Bounce-Rate 2026: 0,96% (3,5x h&ouml;her)</td><td>E5</td><td>Reputations-Risiko</td><td><span class="badge badge-red">7,5% Campaigns</span></td></tr>
       <tr><td>Kein Sunset-Flow aktiv</td><td>E5/12</td><td>&euro;1.200&ndash;3.600 + Deliverability</td><td><span class="badge badge-red">3 Jahre Draft</span></td></tr>
       <tr><td>Campaign-RPR 2026 &minus;43% vs 2025</td><td>E6</td><td>Kalender-Problem</td><td><span class="badge badge-gold">Saisonal</span></td></tr>
       <tr><td>0 Reaktivierungs-Campaigns seit 2025</td><td>E6</td><td>&euro;5&ndash;10k/Jahr</td><td><span class="badge badge-red">Gestoppt</span></td></tr>
-      <tr><td>26.496 Non-DOI Profile ungenutzt</td><td>E2</td><td>&euro;30&ndash;65k/Jahr</td><td><span class="badge badge-gold">Rechtspr&uuml;fung</span></td></tr>
+      <tr><td>26.496 Non-DOI Altbestand + ~39k neue K&auml;ufer/Jahr ohne DOI</td><td>E2*</td><td>&euro;65&ndash;75k/Jahr</td><td><span class="badge badge-red">Non-DOI PPF n&ouml;tig</span></td></tr>
       <tr><td>Exit-Intent-Forms seit 2020 nicht aktualisiert</td><td>E4</td><td>+&euro;50&ndash;100k/Jahr</td><td><span class="badge badge-red">6 Jahre alt</span></td></tr>
       <tr><td>Kein A/B-Test auf Signup-Forms</td><td>E4</td><td>+5&ndash;15% Conversion</td><td><span class="badge badge-gold">Nie eingerichtet</span></td></tr>
     </table>
+  </div>
+
+  <!-- Non-DOI structural issue -->
+  <div class="highlight highlight-warn">
+    <h3 style="color:#cc3333;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Strukturelles Problem: K&auml;ufer ohne DOI</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
+      <div>
+        <p style="margin-bottom:8px;"><strong>~73.000 Shopify-Bestellungen/Jahr</strong></p>
+        <p style="margin-bottom:8px;">Davon ~34.000 mit Newsletter-Signup</p>
+        <p style="margin-bottom:8px;color:#cc3333;font-weight:600;">&rarr; ~39.000 K&auml;ufer/Jahr ohne DOI</p>
+        <p>Diese K&auml;ufer bekommen Bestellbest&auml;tigung + Versand (transaktional), aber <strong>kein Cross-Sell, kein Winback, keine Campaigns</strong>.</p>
+      </div>
+      <div>
+        <p style="margin-bottom:8px;"><strong>L&ouml;sung: Non-DOI Post-Purchase Flow</strong></p>
+        <p style="margin-bottom:8px;">4 Emails unter Bestandskundenprivileg (&sect;7/3 UWG):</p>
+        <p style="margin-bottom:4px;">E1: Bestellbest&auml;tigung+ (transaktional)</p>
+        <p style="margin-bottom:4px;">E2: Mehrwert + Newsletter-Einladung mit 10% Gutschein</p>
+        <p style="margin-bottom:4px;">E3: Bewertungsanfrage + Newsletter-Link</p>
+        <p style="margin-bottom:4px;">E4: Cross-Sell + DOI-Conversion-CTA</p>
+        <p style="margin-top:8px;"><strong>Voraussetzung:</strong> Shopify-Checkout-Text pr&uuml;fen (Bestandskunden-Hinweis)</p>
+      </div>
+    </div>
   </div>
 
   <div class="card">
@@ -212,6 +235,7 @@
       <tr><td>4</td><td>Gratis-Versand in Cart-Emails (AOV &euro;68,20 vs. &euro;69)</td><td style="color:#AC7800;">+&euro;10k</td><td>30 Min</td></tr>
       <tr><td>5</td><td>Zahlungsarten + 30-Tage-R&uuml;ckgabe in Cart-Emails</td><td style="color:#AC7800;">+&euro;5k</td><td>30 Min</td></tr>
       <tr><td>6</td><td>DKIM/SPF/DMARC im UI verifizieren</td><td style="color:#AC7800;">Sicherheit</td><td>15 Min</td></tr>
+      <tr><td>7</td><td><strong>Shopify-Checkout-Text pr&uuml;fen</strong> (Bestandskundenprivileg-Hinweis f&uuml;r Non-DOI PPF)</td><td style="color:#AC7800;">Rechtsgrundlage</td><td>30 Min + Rechtsberatung</td></tr>
     </table>
     <p style="color:#AC7800;font-weight:600;margin-top:12px;font-size:14px;">Quick-Win-Summe: +&euro;72&ndash;117k/Jahr + Stopp des laufenden Verlusts</p>
   </div>
@@ -220,10 +244,11 @@
     <h3>Strategische Projekte (hoher Impact, hoher Aufwand)</h3>
     <table>
       <tr><th>#</th><th>Massnahme</th><th>Impact/Jahr</th><th>Aufwand</th></tr>
-      <tr><td>7</td><td>Post-Purchase konsolidieren (9 Flows &rarr; 1, 53 &rarr; Template-Logik)</td><td>+&euro;72&ndash;118k</td><td>2&ndash;3 Wochen</td></tr>
-      <tr><td>8</td><td>Welcome-Flow E2/E4/E5 neu (Social Proof, Einwand, Last Chance)</td><td>+&euro;51k</td><td>1&ndash;2 Wochen</td></tr>
-      <tr><td>9</td><td>Exit-Intent-Forms aktualisieren + A/B-Test</td><td>+&euro;50&ndash;100k</td><td>1&ndash;2 Tage</td></tr>
-      <tr><td>10</td><td>Winback-Flow aufsetzen (2 Versionen nach LTV)</td><td>+&euro;10&ndash;27k</td><td>1 Woche</td></tr>
+      <tr><td>8</td><td>Post-Purchase konsolidieren (9 Flows &rarr; 1, 53 &rarr; Template-Logik)</td><td>+&euro;72&ndash;118k</td><td>2&ndash;3 Wochen</td></tr>
+      <tr><td>9</td><td><strong>Non-DOI Post-Purchase Flow</strong> (4 Emails, Bestandskundenprivileg, DOI-Conversion-CTA)</td><td>+&euro;65&ndash;75k</td><td>1 Woche</td></tr>
+      <tr><td>10</td><td>Welcome-Flow E2/E4/E5 neu (Social Proof, Einwand, Last Chance)</td><td>+&euro;51k</td><td>1&ndash;2 Wochen</td></tr>
+      <tr><td>11</td><td>Exit-Intent-Forms aktualisieren + A/B-Test</td><td>+&euro;50&ndash;100k</td><td>1&ndash;2 Tage</td></tr>
+      <tr><td>12</td><td>Winback-Flow aufsetzen (2 Versionen nach LTV)</td><td>+&euro;10&ndash;27k</td><td>1 Woche</td></tr>
     </table>
   </div>
 
@@ -244,7 +269,7 @@
   <div class="card" style="background:#faf8f4;">
     <h3>Bewusst nicht priorisieren</h3>
     <table>
-      <tr><td><strong>Non-DOI Reaktivierung</strong></td><td>Erst Rechtspr&uuml;fung, dann handeln. Nebenschauplatz vs. Upstream-Fix.</td></tr>
+      <tr><td><strong>Non-DOI Altbestand-Reaktivierung (26k Profile)</strong></td><td>Erst Checkout-Text pr&uuml;fen + Non-DOI PPF f&uuml;r neue K&auml;ufer aufsetzen. Altbestand ist Nachrangig.</td></tr>
       <tr><td><strong>SMS-Kanal</strong></td><td>Erst Email-System reparieren, dann Kanal erweitern.</td></tr>
       <tr><td><strong>Browse-Abandonment &uuml;berarbeiten</strong></td><td>Funktioniert und w&auml;chst (+67% YoY). Nice-to-have.</td></tr>
       <tr><td><strong>Empfehlungsprogramm</strong></td><td>Mittelfristiges Projekt, nicht akut.</td></tr>
@@ -270,8 +295,10 @@
         <tr><td>W1</td><td>April-2026 Signup-Cliff diagnostizieren</td><td>CRM + Dev</td><td style="color:#AC7800;font-weight:600;">Stoppt Verlust</td></tr>
         <tr><td>W1</td><td>Cart-Flow: Timing +1h, Versand, Zahlungsarten</td><td>CRM</td><td>+&euro;27k</td></tr>
         <tr><td>W1</td><td>DKIM/SPF/DMARC + Bounce-Ursache Feb 2026</td><td>CRM</td><td>Reputation</td></tr>
+        <tr><td>W1</td><td style="color:#AC7800;"><strong>Shopify-Checkout-Text pr&uuml;fen</strong> (Bestandskunden-Hinweis)</td><td>CRM + Legal</td><td style="color:#AC7800;">Rechtsgrundlage Non-DOI PPF</td></tr>
         <tr><td>W2</td><td>Sunset-Flow bauen + Batch starten</td><td>CRM</td><td>Deliverability</td></tr>
         <tr><td>W2</td><td>B2B-Listen validieren</td><td>CRM</td><td>Bounce senken</td></tr>
+        <tr><td>W3</td><td style="color:#AC7800;"><strong>Non-DOI Post-Purchase Flow aufsetzen</strong> (4 Emails)</td><td>CRM + Copy</td><td style="color:#AC7800;">+&euro;65&ndash;75k</td></tr>
         <tr><td>W3&ndash;4</td><td>Welcome-Flow v2 finalisieren (Creative-Team)</td><td>Creative</td><td>+&euro;51k</td></tr>
         <tr><td>W3&ndash;4</td><td>Exit-Intent-Forms aktualisieren + A/B-Test</td><td>CRM + Design</td><td>+&euro;50&ndash;100k</td></tr>
       </table>
@@ -317,16 +344,16 @@
 
   <div class="metrics-row">
     <div class="metric-card">
-      <div class="metric-value">+&euro;210k</div>
-      <div class="metric-label">Konservativ (+12,5%)</div>
+      <div class="metric-value">+&euro;275k</div>
+      <div class="metric-label">Konservativ (+16,3%)</div>
     </div>
     <div class="metric-card" style="border:2px solid #AC7800;">
-      <div class="metric-value gold">+&euro;315k</div>
-      <div class="metric-label">Realistisch (+18,7%)</div>
+      <div class="metric-value gold">+&euro;380k</div>
+      <div class="metric-label">Realistisch (+22,6%)</div>
     </div>
     <div class="metric-card">
-      <div class="metric-value">+&euro;428k</div>
-      <div class="metric-label">Best Case (+25,4%)</div>
+      <div class="metric-value">+&euro;500k</div>
+      <div class="metric-label">Best Case (+29,7%)</div>
     </div>
   </div>
 
@@ -335,8 +362,9 @@
     <table>
       <tr><th>Hebel</th><th>Konservativ</th><th>Realistisch</th><th>Best Case</th></tr>
       <tr><td>K&auml;ufer in Campaigns</td><td>&euro;45.000</td><td>&euro;67.000</td><td>&euro;90.000</td></tr>
+      <tr style="background:#faf0e0;"><td><strong>Non-DOI Post-Purchase Flow</strong></td><td><strong>&euro;50.000</strong></td><td><strong>&euro;65.000</strong></td><td><strong>&euro;75.000</strong></td></tr>
+      <tr><td>Post-Purchase Konsolidierung (DOI)</td><td>&euro;72.000</td><td>&euro;95.000</td><td>&euro;118.000</td></tr>
       <tr><td>Upstream-Fix (Signup-Cliff)</td><td>&euro;24.000</td><td>&euro;48.000</td><td>&euro;96.000</td></tr>
-      <tr><td>Post-Purchase Konsolidierung</td><td>&euro;72.000</td><td>&euro;95.000</td><td>&euro;118.000</td></tr>
       <tr><td>Welcome-Flow E2/E4/E5</td><td>&euro;30.000</td><td>&euro;40.000</td><td>&euro;51.000</td></tr>
       <tr><td>Exit-Intent-Forms</td><td>&euro;25.000</td><td>&euro;50.000</td><td>&euro;100.000</td></tr>
       <tr><td>Cart-Flow Optimierungen</td><td>&euro;20.000</td><td>&euro;25.000</td><td>&euro;28.000</td></tr>
@@ -344,13 +372,13 @@
       <tr><td>Reaktivierungs-Campaigns</td><td>&euro;5.000</td><td>&euro;7.000</td><td>&euro;10.000</td></tr>
       <tr><td>Sunset + Content-CTAs</td><td>&euro;4.200</td><td>&euro;7.400</td><td>&euro;11.600</td></tr>
       <tr style="border-top:2px solid #222;font-weight:600;">
-        <td>Brutto</td><td>&euro;235.200</td><td>&euro;356.400</td><td>&euro;531.600</td>
+        <td>Brutto</td><td>&euro;285.200</td><td>&euro;421.400</td><td>&euro;606.600</td>
       </tr>
       <tr style="color:#999;">
-        <td>Abzug &Uuml;berlappung (&minus;10&ndash;15%)</td><td>&minus;&euro;25.000</td><td>&minus;&euro;41.000</td><td>&minus;&euro;103.000</td>
+        <td>Abzug &Uuml;berlappung (&minus;10&ndash;15%)</td><td>&minus;&euro;10.000</td><td>&minus;&euro;41.000</td><td>&minus;&euro;106.000</td>
       </tr>
       <tr style="font-weight:700;font-size:14px;">
-        <td>NETTO</td><td style="color:#AC7800;">&euro;210.200</td><td style="color:#AC7800;">&euro;315.400</td><td style="color:#AC7800;">&euro;428.600</td>
+        <td>NETTO</td><td style="color:#AC7800;">&euro;275.200</td><td style="color:#AC7800;">&euro;380.400</td><td style="color:#AC7800;">&euro;500.600</td>
       </tr>
     </table>
   </div>
@@ -368,8 +396,9 @@
   <div class="card">
     <table>
       <tr><th>Etappe</th><th>Titel</th><th>Datei</th><th>Top-Finding</th></tr>
-      <tr><td>1</td><td>YoY Account-Diagnose</td><td><code>etappe1_yoy_diagnose.md</code></td><td>Kein Jahres-Einbruch. Q1/Q2-2026. 90% Upstream.</td></tr>
-      <tr><td>2</td><td>Non-DOI Potential</td><td><code>etappe2_non_doi.md</code></td><td>26.496 Profile, ~20k K&auml;ufer. Rechtspr&uuml;fung n&ouml;tig.</td></tr>
+      <tr><td>1</td><td>YoY Account-Diagnose</td><td><code>etappe1_yoy_diagnose.md</code></td><td>Welcome-Revenue &minus;2,5% YoY. Q1/Q2-2026 akut + strukturell.</td></tr>
+      <tr><td>2</td><td>Non-DOI Potential</td><td><code>etappe2_non_doi.md</code></td><td>~39k K&auml;ufer/Jahr ohne DOI. Non-DOI PPF = Haupthebel.</td></tr>
+      <tr><td>2*</td><td style="color:#AC7800;">Upstream-Korrektur + Non-DOI PPF</td><td><code style="color:#AC7800;">etappe_upstream_korrektur.md</code></td><td style="color:#AC7800;"><strong>Korrigiert E1+E2. Non-DOI PPF Konzept (4 Emails, Bestandskundenprivileg).</strong></td></tr>
       <tr><td>3</td><td>Segment-Audit</td><td><code>etappe3_segmente.md</code></td><td><strong>K&auml;ufer aus 98,6% Campaigns ausgeschlossen.</strong></td></tr>
       <tr><td>4</td><td>Listenwachstum</td><td><code>etappe4_upstream.md</code></td><td>April-2026-Cliff. Forms seit 6 Jahren nicht aktualisiert.</td></tr>
       <tr><td>5</td><td>Deliverability</td><td><code>etappe5_hygiene.md</code></td><td>Bounce 3,5x h&ouml;her. 7,5%-Campaigns. Kein Sunset.</td></tr>
