@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Creative Briefing: Welcome-Flow – Lotuscrafts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; color:#1a1a1a; background:#f8f8f6; line-height:1.6; }
+  .page { max-width:1100px; margin:0 auto; padding:40px 32px; }
+
+  /* Header */
+  .doc-header { text-align:center; padding:48px 0 40px 0; border-bottom:2px solid #222; margin-bottom:48px; }
+  .doc-header h1 { font-size:32px; font-weight:700; letter-spacing:-0.5px; margin-bottom:6px; }
+  .doc-header .subtitle { font-size:16px; color:#666; margin-bottom:20px; }
+  .doc-header .meta { font-size:13px; color:#999; }
+
+  /* Briefing purpose */
+  .purpose { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:28px 32px; margin-bottom:48px; }
+  .purpose h2 { font-size:15px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:12px; }
+  .purpose p { font-size:15px; color:#444; }
+
+  /* Sequenz overview */
+  .sequenz { background:#222; color:#fff; border-radius:8px; padding:32px; margin-bottom:48px; }
+  .sequenz h2 { font-size:15px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:20px; }
+  .sequenz-flow { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px; }
+  .sequenz-step { background:#333; border-radius:6px; padding:12px 16px; text-align:center; min-width:120px; }
+  .sequenz-step .step-label { font-size:11px; color:#AC7800; text-transform:uppercase; letter-spacing:1px; }
+  .sequenz-step .step-name { font-size:13px; font-weight:600; margin-top:4px; }
+  .sequenz-step .step-timing { font-size:11px; color:#999; margin-top:2px; }
+  .sequenz-arrow { font-size:20px; color:#666; }
+
+  /* Email section */
+  .email-section { margin-bottom:64px; page-break-inside:avoid; }
+  .email-header { display:flex; align-items:center; gap:16px; margin-bottom:24px; padding-bottom:16px; border-bottom:2px solid #222; }
+  .email-number { background:#222; color:#fff; font-size:20px; font-weight:700; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .email-title { font-size:22px; font-weight:700; }
+  .email-subtitle { font-size:14px; color:#666; margin-top:2px; }
+
+  /* Two column layout */
+  .email-content { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  @media (max-width:900px) { .email-content { grid-template-columns:1fr; } }
+
+  /* Left column: info */
+  .email-info { }
+  .info-block { margin-bottom:20px; }
+  .info-block h3 { font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:8px; font-weight:600; }
+  .info-block p { font-size:14px; color:#333; }
+  .info-block ul { list-style:none; padding:0; }
+  .info-block ul li { font-size:14px; color:#333; padding:4px 0; padding-left:20px; position:relative; }
+  .info-block ul li:before { content:"→"; position:absolute; left:0; color:#AC7800; }
+
+  /* Key-value table */
+  .kv-table { width:100%; border-collapse:collapse; margin-bottom:4px; }
+  .kv-table td { padding:6px 0; font-size:14px; vertical-align:top; border-bottom:1px solid #f0f0f0; }
+  .kv-table td:first-child { font-weight:600; width:100px; color:#666; padding-right:12px; }
+
+  /* Subject lines */
+  .subjects { background:#faf8f4; border-radius:6px; padding:14px 18px; margin-top:8px; }
+  .subjects .variant { font-size:13px; margin-bottom:4px; }
+  .subjects .variant span { font-weight:600; color:#AC7800; margin-right:6px; }
+
+  /* Checklist */
+  .checklist { background:#fff; border:1px solid #e0e0e0; border-radius:6px; padding:16px 20px; }
+  .checklist h3 { font-size:12px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:10px; font-weight:600; }
+  .checklist label { display:block; font-size:13px; color:#333; padding:4px 0; cursor:pointer; }
+  .checklist input[type=checkbox] { margin-right:8px; accent-color:#AC7800; }
+  .checklist .warn { color:#cc3333; font-weight:600; }
+
+  /* Right column: preview */
+  .email-preview { }
+  .preview-frame { border:1px solid #ddd; border-radius:8px; overflow:hidden; background:#f5f5f0; box-shadow:0 2px 12px rgba(0,0,0,0.08); }
+  .preview-label { background:#eee; padding:8px 14px; font-size:11px; color:#666; text-transform:uppercase; letter-spacing:1px; border-bottom:1px solid #ddd; display:flex; justify-content:space-between; }
+  .preview-iframe { width:100%; height:700px; border:none; transform-origin:top left; }
+
+  /* Do / Don't */
+  .do-dont { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
+  .do-box, .dont-box { border-radius:6px; padding:14px 18px; font-size:13px; }
+  .do-box { background:#f0f9f0; border:1px solid #c0e0c0; }
+  .dont-box { background:#fdf0f0; border:1px solid #e0c0c0; }
+  .do-box h4, .dont-box h4 { font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+  .do-box h4 { color:#2a7a2a; }
+  .dont-box h4 { color:#cc3333; }
+
+  /* Voice reminder */
+  .voice-box { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:24px 28px; margin-bottom:48px; }
+  .voice-box h2 { font-size:15px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:14px; }
+  .voice-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .voice-col ul { list-style:none; padding:0; }
+  .voice-col ul li { font-size:13px; padding:3px 0; }
+
+  /* Assets */
+  .assets-section { background:#fff; border:1px solid #e0e0e0; border-radius:8px; padding:28px 32px; margin-bottom:48px; }
+  .assets-section h2 { font-size:15px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:16px; }
+  .assets-table { width:100%; border-collapse:collapse; }
+  .assets-table th { text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#666; padding:8px 0; border-bottom:2px solid #222; }
+  .assets-table td { padding:8px 0; font-size:13px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+  .assets-table .tag { background:#faf0e0; color:#AC7800; font-size:11px; padding:2px 8px; border-radius:3px; font-weight:600; }
+
+  /* Timeline */
+  .timeline { background:#222; color:#fff; border-radius:8px; padding:28px 32px; }
+  .timeline h2 { font-size:15px; text-transform:uppercase; letter-spacing:2px; color:#AC7800; margin-bottom:16px; }
+  .timeline-table { width:100%; border-collapse:collapse; }
+  .timeline-table td { padding:8px 0; font-size:13px; border-bottom:1px solid #333; }
+  .timeline-table td:first-child { color:#ccc; }
+  .timeline-table td:nth-child(2) { color:#AC7800; font-weight:600; }
+
+  /* Print styles */
+  @media print {
+    .page { padding:20px; }
+    .email-content { grid-template-columns:1fr; }
+    .preview-iframe { height:400px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+<div class="doc-header">
+  <h1>Welcome-Flow: Creative Briefing</h1>
+  <div class="subtitle">6 Emails zur Pruefung und Finalisierung durch Copy &amp; Creative</div>
+  <div class="meta">Lotuscrafts &middot; Stand 29.05.2026 &middot; Erstellt: CRM / Retention</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- KONTEXT                                                       -->
+<!-- ============================================================ -->
+<div class="purpose">
+  <h2>Was ist der Welcome-Flow?</h2>
+  <p>
+    Der Welcome-Flow ist die automatische Email-Sequenz, die jeder neue Newsletter-Subscriber erhaelt, nachdem er sich ueber das Pop-Up oder ein Formular auf der Website angemeldet hat.
+    Das Versprechen bei der Anmeldung: <strong>10% Willkommensgutschein + Zugang zu Yoga-Kursen + Pre-Sale-Zugang.</strong>
+    Der Flow liefert dieses Versprechen ein und begleitet den Subscriber ueber 7 Tage vom Erstkontakt bis zur ersten Bestellung.
+  </p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px;">
+
+  <!-- IST-Zustand -->
+  <div style="background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:24px 28px;">
+    <h2 style="font-size:15px;text-transform:uppercase;letter-spacing:2px;color:#AC7800;margin-bottom:14px;">Ist-Zustand (aktueller Flow)</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;font-weight:600;color:#666;width:60px;">E1</td><td style="padding:6px 0;">Gutschein-Mail &ndash; funktioniert gut (RPR &euro;35,71)</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;font-weight:600;color:#666;">E2</td><td style="padding:6px 0;">Online-Kurse &ndash; bewirbt Kurse statt Vertrauen aufzubauen</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;font-weight:600;color:#666;">E3</td><td style="padding:6px 0;">Gutschein-Reminder &ndash; funktioniert, Timing nicht optimal</td></tr>
+      <tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px 0;font-weight:600;color:#666;">E4</td><td style="padding:6px 0;">&Uuml;ber uns &ndash; Brand-Story ohne Bezug zu Kaufhuerden</td></tr>
+      <tr><td style="padding:6px 0;font-weight:600;color:#666;">E5</td><td style="padding:6px 0;">Produktvielfalt &ndash; generischer Katalog, keine Dringlichkeit</td></tr>
+    </table>
+  </div>
+
+  <!-- Schwaechen -->
+  <div style="background:#fdf0f0;border:1px solid #e0c0c0;border-radius:8px;padding:24px 28px;">
+    <h2 style="font-size:15px;text-transform:uppercase;letter-spacing:2px;color:#cc3333;margin-bottom:14px;">Hauptprobleme</h2>
+    <ul style="list-style:none;padding:0;font-size:13px;">
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>Keine DOI-Mail</strong> &ndash; rechtliches Risiko (UWG &sect;7)</li>
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>E2 + E4 unter &euro;1 RPR</strong> &ndash; generieren kaum Revenue</li>
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>Kein Social Proof</strong> &ndash; keine Bewertungen, keine Kundenstimmen</li>
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>Keine Einwand-Behandlung</strong> &ndash; Preis-Bedenken werden nicht adressiert</li>
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>Keine Last-Chance-Mail</strong> &ndash; kein Gutschein-Ablauf, kein Abschluss</li>
+      <li style="padding:5px 0;">&#10007;&ensp;<strong>Kein Skip-Logic</strong> &ndash; Kaeufer bekommen weiter Verkaufsmails</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- AUFTRAG                                                       -->
+<!-- ============================================================ -->
+<div class="purpose">
+  <h2>Euer Auftrag</h2>
+  <p>
+    Unten findet ihr 6 neue Email-Entwuerfe (HTML-Templates + Briefing). Texte, Struktur und Timing stehen.
+    Euer Job: <strong>Copy finalisieren, Tonalitaet pruefen, Bilder liefern, Kundenzitate einsetzen, Fakten verifizieren.</strong>
+    Jede Email hat eine Checkliste mit konkreten Pruefpunkten und klare Leitplanken, was nicht veraendert werden soll.
+  </p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SEQUENZ                                                       -->
+<!-- ============================================================ -->
+<div class="sequenz">
+  <h2>Sequenz-Ueberblick</h2>
+  <div class="sequenz-flow">
+    <div class="sequenz-step">
+      <div class="step-label">Email 0</div>
+      <div class="step-name">DOI</div>
+      <div class="step-timing">sofort</div>
+    </div>
+    <div class="sequenz-arrow">&#8594;</div>
+    <div class="sequenz-step">
+      <div class="step-label">Email 1</div>
+      <div class="step-name">Welcome</div>
+      <div class="step-timing">nach DOI-Klick</div>
+    </div>
+    <div class="sequenz-arrow">&#8594;</div>
+    <div class="sequenz-step">
+      <div class="step-label">Email 2</div>
+      <div class="step-name">Social Proof</div>
+      <div class="step-timing">+24h</div>
+    </div>
+    <div class="sequenz-arrow">&#8594;</div>
+    <div class="sequenz-step">
+      <div class="step-label">Email 3</div>
+      <div class="step-name">Mehrwert</div>
+      <div class="step-timing">+3 Tage</div>
+    </div>
+    <div class="sequenz-arrow">&#8594;</div>
+    <div class="sequenz-step">
+      <div class="step-label">Email 4</div>
+      <div class="step-name">Einwand</div>
+      <div class="step-timing">+5 Tage</div>
+    </div>
+    <div class="sequenz-arrow">&#8594;</div>
+    <div class="sequenz-step">
+      <div class="step-label">Email 5</div>
+      <div class="step-name">Last Chance</div>
+      <div class="step-timing">+7 Tage</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 0                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">0</div>
+    <div>
+      <div class="email-title">DOI-Bestaetigung</div>
+      <div class="email-subtitle">Transaktional &middot; Kein Marketing</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>Sofort bei Newsletter-Signup</td></tr>
+          <tr><td>Betreff</td><td>Bitte bestaetige deine Anmeldung</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Hallo&ldquo; (Erstkontakt)</td></tr>
+          <tr><td>Laenge</td><td>3-4 Saetze, nicht mehr</td></tr>
+          <tr><td>CTA</td><td>1 Button: &bdquo;Anmeldung bestaetigen&ldquo;</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Rechtlich sauberer Opt-in (UWG &sect;7). Der einzige Job: Empfaenger klickt den Button. Alles was ablenkt, senkt die Confirm-Rate.</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Du hast dich angemeldet. Bitte bestaetigen. Dann wartet dein Gutschein.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Warum so minimal?</h3>
+        <p>Kein Hero-Image, keine Produktbilder, keine Story. Deutsche Nutzer kennen DOI-Mails &ndash; je kuerzer, desto hoeher die Bestaetigunsrate.</p>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> Ton sachlich und freundlich, ohne Marketing-Feeling?</label>
+        <label><input type="checkbox"/> Button-Text klar genug? (&bdquo;Anmeldung bestaetigen&ldquo;)</label>
+        <label><input type="checkbox"/> Benefits-Hinweis nach Bestaetigung korrekt? (Gutschein, Kurse, Pre-Sale)</label>
+        <label><input type="checkbox"/> Absendername: &bdquo;Lotuscrafts&ldquo; oder &bdquo;Wolfgang von Lotuscrafts&ldquo;?</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>Keine Bilder, keine Links, keine CTAs hinzufuegen. Nicht laenger machen.</div>
+        <div class="do-box"><h4>Bilder-Bedarf</h4>Keiner. Nur das Logo.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 0 &ndash; Entwurf</span><span>welcome_v2_email_0_doi.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;DOI Bestaetigung&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:24px!important;padding-right:24px!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:40px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot; style=&quot;padding:40px 40px 30px 40px;&quot;&gt;
+  &lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+    &lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;160&quot; style=&quot;display:block;width:160px;max-width:100%;&quot;/&gt;
+  &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- BODY --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 50px 20px 50px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 18px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Hallo{{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 28px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    du hast dich f&amp;#252;r unseren Newsletter angemeldet. Bitte best&amp;#228;tige deine Anmeldung mit einem Klick auf den Button:
+  &lt;/p&gt;
+
+  &lt;!-- CTA --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 0 32px 0;&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;background:#000000;border-radius:0;mso-padding-alt:16px 48px;&quot;&gt;
+      &lt;a href=&quot;{{ double_opt_in_url }}&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:16px 48px;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:13px;font-weight:400;color:#ffffff;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Anmeldung best&amp;#228;tigen&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+
+  &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    Nach der Best&amp;#228;tigung erh&amp;#228;ltst du:
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#8226;&amp;nbsp;&amp;nbsp;Deinen pers&amp;#246;nlichen 10%-Willkommensgutschein
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#8226;&amp;nbsp;&amp;nbsp;Kostenlosen Zugang zu Yoga- und Meditationskursen
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 28px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#8226;&amp;nbsp;&amp;nbsp;Pre-Sale-Zugang f&amp;#252;r neue Produkte
+  &lt;/p&gt;
+
+  &lt;p style=&quot;margin:0 0 0 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:12px;line-height:20px;color:#999999;&quot;&gt;
+    Falls du dich nicht angemeldet hast, kannst du diese E-Mail einfach ignorieren.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- SIGNOFF --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:16px 50px 40px 50px;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    Dein Lotuscrafts Team
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER (minimal, transaktional) --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:20px 50px 28px 50px;border-top:1px solid #eeeeee;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;
+    Lotuscrafts GmbH &amp;middot; Lange Gasse 8/3 &amp;middot; 1080 Wien &amp;#8211; &amp;#214;sterreich&lt;br/&gt;
+    &lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp;|&amp;nbsp;
+    &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 1                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">1</div>
+    <div>
+      <div class="email-title">Welcome + Gutschein</div>
+      <div class="email-subtitle">Sofort nach DOI-Bestaetigung &middot; Wichtigste Email im Flow</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>Sofort nach DOI-Bestaetigung</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Hallo&ldquo; (Erstkontakt)</td></tr>
+          <tr><td>Laenge</td><td>150-200 Woerter</td></tr>
+          <tr><td>CTA</td><td>1 Button: &bdquo;Jetzt Gutschein einloesen&ldquo;</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Betreffzeilen (A/B-Test)</h3>
+        <div class="subjects">
+          <div class="variant"><span>A:</span> Willkommen &ndash; hier ist dein 10%-Gutschein &#10024;</div>
+          <div class="variant"><span>B:</span> Dein 10%-Gutschein ist da</div>
+          <div class="variant"><span>C:</span> Willkommen bei Lotuscrafts, {{ first_name }}</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Gutschein liefern (prominent, nicht versteckt), Community-Benefits zeigen, Sortiment anteasern. Kein Storytelling &ndash; das kommt spaeter.</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Willkommen. Hier ist dein 10%-Gutschein. Und das bekommst du als Community-Mitglied.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Aufbau-Logik</h3>
+        <ul>
+          <li>Gutscheincode prominent oben (Dafuer hat sich der Nutzer angemeldet)</li>
+          <li>4 Community-Benefits als Liste (Gutschein, Kurse, Pre-Sale, Inhalte)</li>
+          <li>4 Kategorie-Teaser mit Bildern (Matten, Meditation, Zubehoer, Bekleidung)</li>
+          <li>Trust-Leiste dunkel unten (10.000+ Yogis, 4,8/5, GOTS)</li>
+        </ul>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> <span class="warn">BILDER NOETIG:</span> 1 Hero-Image (Lifestyle, 600x280) + 4 Kategorie-Bilder (250x250)</label>
+        <label><input type="checkbox"/> Sind die 4 Kategorien die richtigen? (Matten, Meditation, Zubehoer, Bekleidung)</label>
+        <label><input type="checkbox"/> Trust-Leiste: Stimmen die Zahlen? (10.000+, 4,8/5, GOTS &ndash; verifizieren!)</label>
+        <label><input type="checkbox"/> Betreffzeilen: Passt die Auswahl oder bessere Ideen?</label>
+        <label><input type="checkbox"/> Begruessung: &bdquo;Hallo&ldquo; vs. &bdquo;Namaste&ldquo; &ndash; bewusst &bdquo;Hallo&ldquo; weil Erstkontakt</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>Gutschein-Position (bleibt oben). Maximal 1 CTA-Button. Grundstruktur beibehalten.</div>
+        <div class="do-box"><h4>Aktueller RPR</h4>&euro;35,71 &ndash; funktioniert! Aenderungen daher minimal halten.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 1 &ndash; Entwurf</span><span>welcome_v2_email_1_welcome.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;Welcome&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:20px!important;padding-right:20px!important;}
+    .mobile-full{width:100%!important;display:block!important;}
+    .cat-col{width:50%!important;}
+    .hero-img{height:220px!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:20px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot; style=&quot;padding:30px 40px 20px 40px;&quot;&gt;
+  &lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+    &lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;180&quot; style=&quot;display:block;width:180px;max-width:100%;&quot;/&gt;
+  &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- HERO --&gt;
+&lt;tr&gt;
+&lt;td style=&quot;padding:0;&quot;&gt;
+  &lt;!-- PLATZHALTER: Lifestyle-Foto ersetzen --&gt;
+  &lt;img class=&quot;hero-img&quot; src=&quot;https://via.placeholder.com/600x280/f5f0eb/222427?text=Hero+Image:+Yoga+Lifestyle&quot; alt=&quot;Willkommen bei Lotuscrafts&quot; width=&quot;600&quot; style=&quot;display:block;width:100%;height:auto;&quot;/&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- BEGRUESSUNG --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Hallo {{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 0 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    willkommen in unserer Community. Wir freuen uns, dass du dabei bist.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- GUTSCHEIN --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:22px;color:#222427;text-align:center;&quot;&gt;
+    Als Dankesch&amp;#246;n f&amp;#252;r deine Anmeldung &amp;#8211; dein pers&amp;#246;nlicher Willkommensgutschein:
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 0 8px 0;&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:2px dashed #AC7800;border-radius:4px;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td style=&quot;padding:14px 36px;&quot;&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:20px;line-height:28px;color:#AC7800;font-weight:600;letter-spacing:4px;text-align:center;&quot;&gt;
+        {% coupon_code &#x27;MemberOrganic&#x27; %}
+      &lt;/p&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p style=&quot;margin:0 0 20px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:13px;line-height:20px;color:#666666;text-align:center;&quot;&gt;
+    10% auf deine erste Bestellung*
+  &lt;/p&gt;
+  &lt;!-- CTA --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;background:#000000;border-radius:0;mso-padding-alt:15px 44px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.eu/?discount/{% coupon_code &#x27;MemberOrganic&#x27; %}&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:15px 44px;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;color:#ffffff;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Jetzt Gutschein einl&amp;#246;sen&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- BENEFITS --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:32px 40px 0 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:13px;line-height:18px;color:#222427;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+    Deine Community-Benefits
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#10003;&amp;nbsp;&amp;nbsp;10% Willkommens-Rabatt auf deine erste Bestellung
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#10003;&amp;nbsp;&amp;nbsp;Kostenfreier Zugang zu Yoga- und Meditationskursen
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#10003;&amp;nbsp;&amp;nbsp;Pre-Sale-Zugang f&amp;#252;r neue Produkte
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0 0 0 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+    &amp;#10003;&amp;nbsp;&amp;nbsp;Inspirierende Inhalte rund um Yoga und Achtsamkeit
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- KATEGORIE-TEASER --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:32px 40px 0 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 16px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:13px;line-height:18px;color:#222427;letter-spacing:2px;text-transform:uppercase;font-weight:600;text-align:center;&quot;&gt;
+    Entdecke unser Sortiment
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;
+    &lt;td class=&quot;cat-col&quot; width=&quot;25%&quot; align=&quot;center&quot; valign=&quot;top&quot; style=&quot;padding:0 4px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/collections/yogamatten&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/125x125/f5f0eb/222427?text=Yogamatten&quot; alt=&quot;Yogamatten&quot; width=&quot;125&quot; style=&quot;display:block;width:100%;max-width:125px;height:auto;border-radius:4px;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:8px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;text-align:center;letter-spacing:1px;&quot;&gt;Yogamatten&lt;/p&gt;
+    &lt;/td&gt;
+    &lt;td class=&quot;cat-col&quot; width=&quot;25%&quot; align=&quot;center&quot; valign=&quot;top&quot; style=&quot;padding:0 4px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/collections/meditation&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/125x125/f5f0eb/222427?text=Meditation&quot; alt=&quot;Meditation&quot; width=&quot;125&quot; style=&quot;display:block;width:100%;max-width:125px;height:auto;border-radius:4px;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:8px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;text-align:center;letter-spacing:1px;&quot;&gt;Meditation&lt;/p&gt;
+    &lt;/td&gt;
+    &lt;td class=&quot;cat-col&quot; width=&quot;25%&quot; align=&quot;center&quot; valign=&quot;top&quot; style=&quot;padding:0 4px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/collections/yoga-zubehoer&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/125x125/f5f0eb/222427?text=Zubehoer&quot; alt=&quot;Yoga-Zubehoer&quot; width=&quot;125&quot; style=&quot;display:block;width:100%;max-width:125px;height:auto;border-radius:4px;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:8px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;text-align:center;letter-spacing:1px;&quot;&gt;Zubehoer&lt;/p&gt;
+    &lt;/td&gt;
+    &lt;td class=&quot;cat-col&quot; width=&quot;25%&quot; align=&quot;center&quot; valign=&quot;top&quot; style=&quot;padding:0 4px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/collections/bekleidung&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/125x125/f5f0eb/222427?text=Bekleidung&quot; alt=&quot;Bekleidung&quot; width=&quot;125&quot; style=&quot;display:block;width:100%;max-width:125px;height:auto;border-radius:4px;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:8px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;text-align:center;letter-spacing:1px;&quot;&gt;Bekleidung&lt;/p&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- TRUST-LEISTE --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#222427;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;
+  &lt;td align=&quot;center&quot; style=&quot;padding:14px 20px;&quot;&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:11px;line-height:18px;color:#ffffff;letter-spacing:2px;text-transform:uppercase;&quot;&gt;
+      10.000+ Yogis &amp;nbsp;&amp;middot;&amp;nbsp; 4,8 / 5 Sterne &amp;nbsp;&amp;middot;&amp;nbsp; GOTS-zertifiziert
+    &lt;/p&gt;
+  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 12px 40px;border-top:0;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:10px;line-height:16px;color:#999999;text-align:center;&quot;&gt;
+    * Ausgenommen sind Produkt-Sets. F&amp;#252;r die Lieferung innerhalb Deutschlands und &amp;#214;sterreichs berechnen wir pauschal 4,95&amp;#8364; pro Bestellung. Ab einem Bestellwert von 69&amp;#8364; liefern wir versandkostenfrei. Alle Preise inkl. MwSt.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;font-weight:600;&quot;&gt;Lotuscrafts GmbH&lt;/p&gt;
+  &lt;p style=&quot;margin:4px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;&quot;&gt;Lange Gasse 8/3&lt;br/&gt;1080 Wien &amp;#8211; &amp;#214;sterreich&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;&quot;&gt;
+    Du m&amp;#246;chtest uns kontaktieren? &lt;a href=&quot;https://www.lotuscrafts.com/pages/kontakt&quot; style=&quot;color:#AC7800;&quot;&gt;Dann klicke hier&lt;/a&gt;.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 20px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;
+    &amp;#169; 2026 Lotuscrafts &amp;#8211; All rights reserved.&lt;br/&gt;
+    Falls du keine Newsletter mehr erhalten m&amp;#246;chtest, {% unsubscribe &#x27;klicke hier&#x27; %}.&lt;br/&gt;
+    &lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp;
+    &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt; &amp;nbsp;
+    &lt;a href=&quot;https://www.lotuscrafts.com/policies/terms-of-service&quot; style=&quot;color:#999999;&quot;&gt;AGB&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 2                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">2</div>
+    <div>
+      <div class="email-title">Social Proof</div>
+      <div class="email-subtitle">+24 Stunden nach Email 1</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>24h nach Email 1</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Namaste&ldquo; (ab jetzt yogischer)</td></tr>
+          <tr><td>Laenge</td><td>120-150 Woerter</td></tr>
+          <tr><td>CTA</td><td>Primaer: &bdquo;Bestseller entdecken&ldquo; / Sekundaer: &bdquo;Zu den Kursen&ldquo;</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Betreffzeilen</h3>
+        <div class="subjects">
+          <div class="variant"><span>A:</span> Das sagen ueber 10.000 Yogis</div>
+          <div class="variant"><span>B:</span> Warum sich Yogis fuer Lotuscrafts entscheiden</div>
+          <div class="variant"><span>C:</span> 4,8 von 5 Sternen &ndash; das steckt dahinter</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Vertrauen aufbauen durch Kundenstimmen. Nicht wir reden ueber uns &ndash; Kunden reden ueber uns. CTA geht auf Bestseller (natuerliche Anschlusshandlung nach &bdquo;andere finden das gut&ldquo;).</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Tausende Yogis vertrauen Lotuscrafts. Hier ist, was sie sagen.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Aufbau-Logik</h3>
+        <ul>
+          <li>3 Kundenbewertungen (bewusst 3 Produktkategorien: Matte, Kissen, Zubehoer)</li>
+          <li>Trust-Leiste: Zahlen + Zertifizierungen</li>
+          <li>Bestseller-CTA (Haupt-Button)</li>
+          <li>Community-Bonus-Box: Kursangebot als sekundaerer Mehrwert (nicht Hauptthema!)</li>
+        </ul>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> <span class="warn">KUNDENZITATE SIND PLATZHALTER!</span> Durch echte Reviews ersetzen (Trusted Shops / Reviews.io)</label>
+        <label><input type="checkbox"/> <span class="warn">BILD NOETIG:</span> 1 Hero-Image (Person auf Lotuscrafts-Matte, natuerliches Licht, 600x280)</label>
+        <label><input type="checkbox"/> Trust-Leiste: Zahlen verifizieren (10.000+, 4,8/5)</label>
+        <label><input type="checkbox"/> Circle-Link in der Bonus-Box korrekt?</label>
+        <label><input type="checkbox"/> Sollen Produktbilder neben den Reviews stehen? (aktuell: nur Text)</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>Kein Gutschein in dieser Email. Kursangebot bleibt sekundaer (Bonus-Box). Bestseller als CTA, nicht Shop-Startseite.</div>
+        <div class="do-box"><h4>Warum Social Proof hier?</h4>Wer nach E1 nicht kauft, braucht Vertrauen. Bewertungen sind im DACH-Markt kaufentscheidend.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 2 &ndash; Entwurf</span><span>welcome_v2_email_2_social_proof.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;Social Proof&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:20px!important;padding-right:20px!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:20px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:30px 40px 20px 40px;&quot;&gt;&lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;180&quot; style=&quot;display:block;width:180px;max-width:100%;&quot;/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- HERO --&gt;
+&lt;tr&gt;&lt;td style=&quot;padding:0;&quot;&gt;&lt;img src=&quot;https://via.placeholder.com/600x280/f5f0eb/222427?text=Hero:+Yogini+auf+Matte&quot; alt=&quot;Lotuscrafts Community&quot; width=&quot;600&quot; style=&quot;display:block;width:100%;height:auto;&quot;/&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- INTRO --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 24px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Namast&amp;#233; {{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    sch&amp;#246;n, dass du da bist. Seit 2011 begleiten wir Yogis in ganz Europa &amp;#8211; und das beste Feedback kommt direkt von ihnen:
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- REVIEW 1 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 12px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-size:16px;color:#AC7800;letter-spacing:2px;&quot;&gt;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:22px;color:#222427;font-style:italic;&quot;&gt;
+      &amp;#8222;Die Yogamatte PURE ist rutschfest, langlebig und riecht nicht nach Chemie. Nach 2 Jahren sieht sie aus wie am ersten Tag.&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;letter-spacing:1px;&quot;&gt;&amp;#8211; SARAH M., VERIFIZIERTE K&amp;#196;UFERIN&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- REVIEW 2 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 12px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-size:16px;color:#AC7800;letter-spacing:2px;&quot;&gt;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:22px;color:#222427;font-style:italic;&quot;&gt;
+      &amp;#8222;Das Meditationskissen hat genau die richtige H&amp;#246;he. Endlich kann ich l&amp;#228;nger als 10 Minuten sitzen, ohne dass mir die Beine einschlafen.&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;letter-spacing:1px;&quot;&gt;&amp;#8211; THOMAS K., VERIFIZIERTER K&amp;#196;UFER&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- REVIEW 3 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-size:16px;color:#AC7800;letter-spacing:2px;&quot;&gt;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 10px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:22px;color:#222427;font-style:italic;&quot;&gt;
+      &amp;#8222;Korkblock und Bio-Baumwoll-Gurt machen jede Asana zug&amp;#228;nglicher. Material top, Verarbeitung top.&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;letter-spacing:1px;&quot;&gt;&amp;#8211; ANNA L., VERIFIZIERTE K&amp;#196;UFERIN&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- TRUST-LEISTE --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:24px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#222427;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:14px 20px;&quot;&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#ffffff;letter-spacing:2px;text-transform:uppercase;&quot;&gt;
+      10.000+ Yogis &amp;nbsp;&amp;middot;&amp;nbsp; 4,8 / 5 Sterne &amp;nbsp;&amp;middot;&amp;nbsp; GOTS-zertifiziert &amp;nbsp;&amp;middot;&amp;nbsp; Made in Europe
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- CTA --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 20px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:24px;color:#222427;text-align:center;&quot;&gt;
+    Entdecke unsere Bestseller &amp;#8211; mit deinem 10%-Gutschein.
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;background:#000000;border-radius:0;mso-padding-alt:15px 40px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/collections/bestseller&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:15px 40px;font-family:HKGrotesk,sans-serif;font-size:12px;font-weight:400;color:#ffffff;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Bestseller entdecken&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- BONUS-BOX --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:1px dashed #AC7800;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:20px 24px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Dein Community-Bonus
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:22px;color:#222427;&quot;&gt;
+      Als Mitglied hast du kostenlosen Zugang zu Yoga- und Meditationskursen auf unserer Circle-Plattform. Live-Klassen, gef&amp;#252;hrte Meditationen und mehr &amp;#8211; alles inklusive.
+    &lt;/p&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+    &lt;tr&gt;
+    &lt;td valign=&quot;middle&quot; style=&quot;border:1px solid #000000;&quot;&gt;
+      &lt;a href=&quot;https://community.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:9px 20px;font-family:HKGrotesk,sans-serif;font-size:11px;color:#000000;text-decoration:none;letter-spacing:2px;text-transform:uppercase;&quot;&gt;Zu den Kursen&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 12px 40px;border-top:1px solid #eeeeee;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:10px;line-height:16px;color:#999999;text-align:center;&quot;&gt;* Ausgenommen sind Produkt-Sets. Versand pauschal 4,95&amp;#8364;, ab 69&amp;#8364; versandkostenfrei (DE/AT). Alle Preise inkl. MwSt.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;font-weight:600;&quot;&gt;Lotuscrafts GmbH&lt;/p&gt;&lt;p style=&quot;margin:4px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;&quot;&gt;Lange Gasse 8/3&lt;br/&gt;1080 Wien &amp;#8211; &amp;#214;sterreich&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;&quot;&gt;Du m&amp;#246;chtest uns kontaktieren? &lt;a href=&quot;https://www.lotuscrafts.com/pages/kontakt&quot; style=&quot;color:#AC7800;&quot;&gt;Dann klicke hier&lt;/a&gt;.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 20px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;&amp;#169; 2026 Lotuscrafts &amp;#8211; All rights reserved.&lt;br/&gt;Falls du keine Newsletter mehr erhalten m&amp;#246;chtest, {% unsubscribe &#x27;klicke hier&#x27; %}.&lt;br/&gt;&lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/policies/terms-of-service&quot; style=&quot;color:#999999;&quot;&gt;AGB&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 3                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">3</div>
+    <div>
+      <div class="email-title">Mehrwert / Yoga-Tipp</div>
+      <div class="email-subtitle">+48 Stunden nach Email 2 (Tag 3) &middot; Kein Verkauf</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>48h nach Email 2 (Tag 3 im Flow)</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Namaste&ldquo;</td></tr>
+          <tr><td>Laenge</td><td>150-170 Woerter</td></tr>
+          <tr><td>CTA</td><td>Soft: &bdquo;Kostenlose Kurse entdecken&ldquo; (Outline-Button) + Blog-Link</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Betreffzeilen</h3>
+        <div class="subjects">
+          <div class="variant"><span>A:</span> 3 Minuten Yoga &ndash; passt in jeden Morgen</div>
+          <div class="variant"><span>B:</span> Eine Mini-Routine fuer deinen Start in den Tag</div>
+          <div class="variant"><span>C:</span> Yoga fuer Eilige: 3 Uebungen, 3 Minuten</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Beziehung vertiefen. Zeigen, dass wir mehr bieten als Produkte. <strong>Kein Produktbild, kein Preis, kein Gutschein</strong> in dieser Email. DACH-Konsumenten reagieren negativ auf drei Verkaufsmails in Folge.</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Hier ist etwas Nuetzliches fuer deine Praxis &ndash; kostenlos, ohne Gegenleistung.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Aufbau-Logik</h3>
+        <ul>
+          <li>3-Minuten-Morgenroutine in 3 Bloecken (Atmen, Bewegen, Erden) &ndash; scanbar, nicht wie ein Lehrbuch</li>
+          <li>Tipp-Box: &bdquo;Du brauchst nichts ausser einen ruhigen Platz&ldquo; &ndash; signalisiert: kein versteckter Sell</li>
+          <li>CTA zu Circle-Kursen &ndash; natuerlicher Uebergang nach dem Yoga-Tipp</li>
+        </ul>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> <span class="warn">FACHLICHE PRUEFUNG:</span> Sind die Yoga-Uebungen korrekt beschrieben? Reihenfolge ok?</label>
+        <label><input type="checkbox"/> <span class="warn">BILD NOETIG:</span> 1 Hero-Image (Morgen-Setting, einfache Yoga-Pose, 600x280)</label>
+        <label><input type="checkbox"/> Sprache einfach genug fuer Anfaenger, nicht herablassend fuer Fortgeschrittene?</label>
+        <label><input type="checkbox"/> Passenden Blog-Beitrag auswaehlen fuer den Blog-Link</label>
+        <label><input type="checkbox"/> Optional: kleine Icons fuer die 3 Bloecke (Lunge, Bewegung, Baum)?</label>
+        <label><input type="checkbox"/> &bdquo;Namaste&ldquo; als Anrede ab E2 ok? Oder durchgehend &bdquo;Hallo&ldquo;?</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>Kein Produktbild, kein Preis, kein Gutschein. CTA bleibt &bdquo;soft&ldquo; (Outline-Button, nicht der schwarze Haupt-CTA).</div>
+        <div class="do-box"><h4>Kursangebot hier</h4>Nach dem Yoga-Tipp &rarr; &bdquo;Mehr davon auf Circle&ldquo; ist der natuerlichste Moment im ganzen Flow.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 3 &ndash; Entwurf</span><span>welcome_v2_email_3_mehrwert.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;Mehrwert&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:20px!important;padding-right:20px!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:20px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:30px 40px 20px 40px;&quot;&gt;&lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;180&quot; style=&quot;display:block;width:180px;max-width:100%;&quot;/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- HERO --&gt;
+&lt;tr&gt;&lt;td style=&quot;padding:0;&quot;&gt;&lt;img src=&quot;https://via.placeholder.com/600x280/f5f0eb/222427?text=Hero:+Morgen-Yoga+Setting&quot; alt=&quot;Yoga Morgenroutine&quot; width=&quot;600&quot; style=&quot;display:block;width:100%;height:auto;&quot;/&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- INTRO --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 24px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Namast&amp;#233; {{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Yoga muss nicht kompliziert sein. Diese Morgenroutine dauert 3 Minuten und passt in jeden Alltag &amp;#8211; egal ob du gerade erst anf&amp;#228;ngst oder seit Jahren auf der Matte stehst.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- MINUTE 1 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 16px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Minute 1 &amp;#8211; Atmen
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Setz dich bequem hin. Schlie&amp;#223; die Augen. Atme 4 Sekunden ein, halte 4 Sekunden, atme 4 Sekunden aus. Wiederhole das 5 Mal. Das beruhigt dein Nervensystem und bringt dich in den Moment.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- MINUTE 2 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 16px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Minute 2 &amp;#8211; Bewegen
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Komm in den Vierf&amp;#252;&amp;#223;lerstand. Wechsle langsam zwischen Katze (R&amp;#252;cken rund, Kinn zur Brust) und Kuh (R&amp;#252;cken hohl, Blick nach oben). 6&amp;#8211;8 Wiederholungen. Mobilisiert die Wirbels&amp;#228;ule und l&amp;#246;st Verspannungen vom Schlafen.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- MINUTE 3 --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Minute 3 &amp;#8211; Erden
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Steh auf. Beuge dich aus der H&amp;#252;fte nach vorne, Knie leicht gebeugt. H&amp;#228;nde h&amp;#228;ngen lassen. 30 Sekunden halten, langsam aufrollen. Dehnt die R&amp;#252;ckseite der Beine und erdet dich f&amp;#252;r den Tag.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- TIPP-BOX --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:20px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-left:3px solid #AC7800;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:12px 20px;&quot;&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:22px;color:#666666;&quot;&gt;
+      &lt;strong style=&quot;color:#222427;&quot;&gt;Tipp:&lt;/strong&gt; Du brauchst daf&amp;#252;r nichts au&amp;#223;er einen ruhigen Platz. Mit Matte ist es bequemer &amp;#8211; aber es geht auch auf dem Teppich.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- CTA KURSE --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 20px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:24px;color:#222427;text-align:center;&quot;&gt;
+    Du willst tiefer einsteigen? Auf unserer Community-Plattform findest du kostenlose Kurse f&amp;#252;r Yoga, Pranayama und Meditation &amp;#8211; f&amp;#252;r jedes Level.
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;border:1px solid #000000;&quot;&gt;
+      &lt;a href=&quot;https://community.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:13px 36px;font-family:HKGrotesk,sans-serif;font-size:12px;font-weight:400;color:#000000;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Kostenlose Kurse entdecken&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p style=&quot;margin:16px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:20px;color:#666666;text-align:center;&quot;&gt;
+    Oder st&amp;#246;bere in unserem &lt;a href=&quot;https://www.lotuscrafts.com/blogs/magazin&quot; style=&quot;color:#AC7800;&quot;&gt;Blog&lt;/a&gt; f&amp;#252;r mehr Tipps und Routinen.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 12px 40px;border-top:1px solid #eeeeee;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:10px;line-height:16px;color:#999999;text-align:center;&quot;&gt;* Ausgenommen sind Produkt-Sets. Versand pauschal 4,95&amp;#8364;, ab 69&amp;#8364; versandkostenfrei (DE/AT). Alle Preise inkl. MwSt.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;font-weight:600;&quot;&gt;Lotuscrafts GmbH&lt;/p&gt;&lt;p style=&quot;margin:4px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;&quot;&gt;Lange Gasse 8/3&lt;br/&gt;1080 Wien &amp;#8211; &amp;#214;sterreich&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;&quot;&gt;Du m&amp;#246;chtest uns kontaktieren? &lt;a href=&quot;https://www.lotuscrafts.com/pages/kontakt&quot; style=&quot;color:#AC7800;&quot;&gt;Dann klicke hier&lt;/a&gt;.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 20px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;&amp;#169; 2026 Lotuscrafts &amp;#8211; All rights reserved.&lt;br/&gt;Falls du keine Newsletter mehr erhalten m&amp;#246;chtest, {% unsubscribe &#x27;klicke hier&#x27; %}.&lt;br/&gt;&lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/policies/terms-of-service&quot; style=&quot;color:#999999;&quot;&gt;AGB&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 4                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">4</div>
+    <div>
+      <div class="email-title">Einwand-Behandlung</div>
+      <div class="email-subtitle">+48 Stunden nach Email 3 (Tag 5) &middot; FAQ-Format</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>48h nach Email 3 (Tag 5 im Flow)</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Namaste&ldquo;</td></tr>
+          <tr><td>Laenge</td><td>180-200 Woerter</td></tr>
+          <tr><td>CTA</td><td>&bdquo;Jetzt mit 10% starten&ldquo; + Gutscheincode</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Betreffzeilen</h3>
+        <div class="subjects">
+          <div class="variant"><span>A:</span> Lohnt sich eine Yogamatte fuer &euro;80?</div>
+          <div class="variant"><span>B:</span> 3 Fragen, die uns Yogis am haeufigsten stellen</div>
+          <div class="variant"><span>C:</span> Ehrliche Antworten &ndash; von Preis bis Rueckgabe</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Den #1 Einwand (Preis) direkt adressieren. FAQ-Format: respektvoll, scanbar, kein Verkaufspitch. Drei Fragen, drei ehrliche Antworten.</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Du ueberlegst noch? Verstaendlich. Hier sind ehrliche Antworten.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Die 3 FAQs</h3>
+        <ul>
+          <li><strong>&bdquo;Lohnt sich der Preis?&ldquo;</strong> &ndash; 10 Cent/Session-Rechnung, 5+ Jahre Haltbarkeit, GOTS</li>
+          <li><strong>&bdquo;Bin ich erfahren genug?&ldquo;</strong> &ndash; Fuer jedes Level + Kundenzitat Anfaengerin</li>
+          <li><strong>&bdquo;Was wenn es nicht passt?&ldquo;</strong> &ndash; 30 Tage Rueckgabe, persoenlicher Support, Zahlungsarten</li>
+        </ul>
+      </div>
+      <div class="info-block">
+        <h3>Warum die Origin-Story hier?</h3>
+        <p>Wolfgangs Gruendungsgeschichte stuetzt den Preis-Einwand: &bdquo;Teurer, weil keine Kompromisse bei Materialien.&ldquo; Das ist ein Argument, nicht Selbstdarstellung. Bewusst kurz (2 Saetze).</p>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> <span class="warn">KUNDENZITAT IN FAQ 2 IST PLATZHALTER!</span> Echtes Review einer Anfaengerin einsetzen</label>
+        <label><input type="checkbox"/> <span class="warn">BILD NOETIG:</span> 1 Produktbild (Matte Nahaufnahme, Materialstruktur, 600x180)</label>
+        <label><input type="checkbox"/> Preisrechnung verifizieren: &euro;79,95 / 3x Woche / 52 Wochen / 5 Jahre = ~10 Cent?</label>
+        <label><input type="checkbox"/> Zahlungsarten: Bieten wir Klarna, PayPal, Visa, Rechnungskauf an? Icons anpassen</label>
+        <label><input type="checkbox"/> 30-Tage-Rueckgaberecht: Stimmt das? (Gesetzlich 14 Tage, 30 Tage waere ein USP)</label>
+        <label><input type="checkbox"/> Origin-Story: Formulierung ok? Soll Wolfgang draufschauen?</label>
+        <label><input type="checkbox"/> Zahlungsarten als echte Payment-Logos oder als Text-Badges?</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>FAQ-Format beibehalten (nicht in Fliesstext). Origin-Story max. 2 Saetze. Value-Stack auf dunklem Hintergrund.</div>
+        <div class="do-box"><h4>Kursangebot hier</h4>Im Value-Stack als 1 Bullet von 4. Verstaerkt den Gesamtwert.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 4 &ndash; Entwurf</span><span>welcome_v2_email_4_einwand.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;Einwand-Behandlung&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:20px!important;padding-right:20px!important;}
+    .payment-badge{display:inline-block!important;margin:4px!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:20px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:30px 40px 20px 40px;&quot;&gt;&lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;180&quot; style=&quot;display:block;width:180px;max-width:100%;&quot;/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- INTRO --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:24px 40px 24px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Namast&amp;#233; {{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    du &amp;#252;berlegst noch? Das ist v&amp;#246;llig okay &amp;#8211; eine bewusste Entscheidung braucht Zeit. Hier sind ehrliche Antworten auf die drei Fragen, die wir am h&amp;#228;ufigsten h&amp;#246;ren:
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FAQ 1: PREIS --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 16px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:28px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:22px;color:#222427;font-weight:600;&quot;&gt;
+      &amp;#8222;Lohnt sich eine Yogamatte f&amp;#252;r &amp;#8364;80?&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Kurze Antwort: Ja &amp;#8211; wenn du sie l&amp;#228;nger als 6 Monate nutzt.
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Unsere Matten sind f&amp;#252;r &lt;strong&gt;5+ Jahre&lt;/strong&gt; t&amp;#228;gliche Praxis gemacht. Bei 3x Yoga pro Woche kostet dich das &lt;strong&gt;unter 10 Cent pro Session&lt;/strong&gt;.
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Zum Vergleich: Wer dreimal eine g&amp;#252;nstige 20&amp;#8364;-Matte kauft, zahlt am Ende mehr &amp;#8211; und produziert dreimal so viel M&amp;#252;ll.
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Alle Textilprodukte sind &lt;strong&gt;GOTS-zertifiziert&lt;/strong&gt;. Du wei&amp;#223;t genau, wof&amp;#252;r du bezahlst.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:0;&quot;&gt;
+    &lt;!-- PLATZHALTER: Nahaufnahme Matte, Materialstruktur --&gt;
+    &lt;img src=&quot;https://via.placeholder.com/600x180/f5f0eb/222427?text=Bild:+Matte+Materialstruktur&quot; alt=&quot;Materialqualitaet&quot; width=&quot;600&quot; style=&quot;display:block;width:100%;height:auto;border-radius:0 0 4px 4px;&quot;/&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FAQ 2: LEVEL --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 16px 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:28px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:22px;color:#222427;font-weight:600;&quot;&gt;
+      &amp;#8222;Bin ich daf&amp;#252;r erfahren genug?&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Unsere Produkte sind f&amp;#252;r jedes Level gemacht. Gerade Zubeh&amp;#246;r wie Bl&amp;#246;cke, Gurte und Bolster sind besonders f&amp;#252;r den Einstieg wertvoll &amp;#8211; sie machen Asanas zug&amp;#228;nglicher und helfen bei der korrekten Ausf&amp;#252;hrung.
+    &lt;/p&gt;
+    &lt;!-- Kundenzitat --&gt;
+    &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-left:3px solid #AC7800;&quot;&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:12px 20px;&quot;&gt;
+      &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:22px;color:#222427;font-style:italic;&quot;&gt;
+        &amp;#8222;Ich habe als komplette Anf&amp;#228;ngerin mit der PURE angefangen. Der Korkblock war mein bester Freund &amp;#8211; und 2 Jahre sp&amp;#228;ter benutze ich beides t&amp;#228;glich.&amp;#8220;
+      &lt;/p&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;&quot;&gt;&amp;#8211; Lisa R.&lt;/p&gt;
+    &lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FAQ 3: RUECKGABE + ZAHLUNG --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:28px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:22px;color:#222427;font-weight:600;&quot;&gt;
+      &amp;#8222;Was, wenn es mir nicht passt?&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Du hast &lt;strong&gt;30 Tage zum Testen&lt;/strong&gt;. Wenn du nicht zufrieden bist, schickst du es zur&amp;#252;ck &amp;#8211; ohne Wenn und Aber.
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 16px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;
+      Und falls du Fragen hast: Unser Team antwortet pers&amp;#246;nlich per E-Mail. Kein Bot, kein Warteschleifen-Bingo.
+    &lt;/p&gt;
+    &lt;!-- Zahlungsarten --&gt;
+    &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:16px;color:#666666;letter-spacing:1px;text-transform:uppercase;&quot;&gt;Flexible Zahlung:&lt;/p&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+    &lt;tr&gt;
+      &lt;td class=&quot;payment-badge&quot; style=&quot;padding:0 6px 0 0;&quot;&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:1px solid #dddddd;border-radius:4px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;padding:6px 12px;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;&quot;&gt;Klarna&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td class=&quot;payment-badge&quot; style=&quot;padding:0 6px 0 0;&quot;&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:1px solid #dddddd;border-radius:4px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;padding:6px 12px;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;&quot;&gt;PayPal&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td class=&quot;payment-badge&quot; style=&quot;padding:0 6px 0 0;&quot;&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:1px solid #dddddd;border-radius:4px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;padding:6px 12px;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;&quot;&gt;Visa&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+      &lt;td class=&quot;payment-badge&quot; style=&quot;padding:0;&quot;&gt;&lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:1px solid #dddddd;border-radius:4px;&quot;&gt;&lt;tr&gt;&lt;td style=&quot;padding:6px 12px;font-family:HKGrotesk,sans-serif;font-size:11px;color:#222427;&quot;&gt;Rechnung&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- ORIGIN STORY --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 20px;&quot;&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:22px;color:#666666;text-align:center;font-style:italic;&quot;&gt;
+      Wolfgang gr&amp;#252;ndete Lotuscrafts 2011 allein in Wien, weil er kein Meditationskissen finden konnte, das fair produziert und fair bepreist war. An diesem Anspruch hat sich nichts ge&amp;#228;ndert.
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- VALUE STACK --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:24px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#222427;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Das bekommst du als Community-Mitglied
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#ffffff;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;10% auf deine erste Bestellung&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#ffffff;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;Kostenfreier Zugang zu Yoga-Kursen&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 6px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#ffffff;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;Pre-Sale-Zugang f&amp;#252;r neue Produkte&lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#ffffff;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;30 Tage R&amp;#252;ckgaberecht&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- CTA + COUPON --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:24px;color:#222427;text-align:center;&quot;&gt;
+    Bereit f&amp;#252;r den ersten Schritt?
+  &lt;/p&gt;
+  &lt;!-- Coupon --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 0 20px 0;&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:2px dashed #AC7800;border-radius:4px;&quot;&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:10px 28px;&quot;&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:16px;line-height:24px;color:#AC7800;font-weight:600;letter-spacing:3px;text-align:center;&quot;&gt;{% coupon_code &#x27;MemberOrganic&#x27; %}&lt;/p&gt;
+    &lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;!-- Button --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;background:#000000;border-radius:0;mso-padding-alt:15px 40px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.eu/?discount/{% coupon_code &#x27;MemberOrganic&#x27; %}&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:15px 40px;font-family:HKGrotesk,sans-serif;font-size:12px;font-weight:400;color:#ffffff;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Jetzt mit 10% starten&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 12px 40px;border-top:1px solid #eeeeee;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:10px;line-height:16px;color:#999999;text-align:center;&quot;&gt;* Ausgenommen sind Produkt-Sets. Versand pauschal 4,95&amp;#8364;, ab 69&amp;#8364; versandkostenfrei (DE/AT). Alle Preise inkl. MwSt.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;font-weight:600;&quot;&gt;Lotuscrafts GmbH&lt;/p&gt;&lt;p style=&quot;margin:4px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;&quot;&gt;Lange Gasse 8/3&lt;br/&gt;1080 Wien &amp;#8211; &amp;#214;sterreich&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;&quot;&gt;Du m&amp;#246;chtest uns kontaktieren? &lt;a href=&quot;https://www.lotuscrafts.com/pages/kontakt&quot; style=&quot;color:#AC7800;&quot;&gt;Dann klicke hier&lt;/a&gt;.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 20px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;&amp;#169; 2026 Lotuscrafts &amp;#8211; All rights reserved.&lt;br/&gt;Falls du keine Newsletter mehr erhalten m&amp;#246;chtest, {% unsubscribe &#x27;klicke hier&#x27; %}.&lt;br/&gt;&lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/policies/terms-of-service&quot; style=&quot;color:#999999;&quot;&gt;AGB&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- EMAIL 5                                                       -->
+<!-- ============================================================ -->
+<div class="email-section">
+  <div class="email-header">
+    <div class="email-number">5</div>
+    <div>
+      <div class="email-title">Last Chance</div>
+      <div class="email-subtitle">+48 Stunden nach Email 4 (Tag 7) &middot; Letzter Push</div>
+    </div>
+  </div>
+  <div class="email-content">
+    <div class="email-info">
+      <div class="info-block">
+        <h3>Eckdaten</h3>
+        <table class="kv-table">
+          <tr><td>Timing</td><td>48h nach Email 4 (Tag 7 im Flow)</td></tr>
+          <tr><td>Anrede</td><td>&bdquo;Namaste&ldquo;</td></tr>
+          <tr><td>Laenge</td><td>130-150 Woerter</td></tr>
+          <tr><td>CTA</td><td>&bdquo;Letzte Chance &ndash; jetzt 10% sichern&ldquo; (groesserer Button als ueblich)</td></tr>
+        </table>
+      </div>
+      <div class="info-block">
+        <h3>Betreffzeilen</h3>
+        <div class="subjects">
+          <div class="variant"><span>A:</span> Dein 10%-Gutschein laeuft bald ab</div>
+          <div class="variant"><span>B:</span> Letzte Erinnerung: Dein Willkommens-Rabatt</div>
+          <div class="variant"><span>C:</span> Nicht verpassen &ndash; dein 10% Gutschein</div>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3>Ziel</h3>
+        <p>Alles zusammenfassen, letzte Conversion-Chance. Kein neuer Content &ndash; nur das Beste aus E1-E4 gebuendelt mit ehrlicher Dringlichkeit (kein Fake-Countdown).</p>
+      </div>
+      <div class="info-block">
+        <h3>Botschaft in einem Satz</h3>
+        <p><em>&bdquo;Dein Gutschein laeuft bald ab. Hier ist alles auf einen Blick &ndash; letzte Chance.&ldquo;</em></p>
+      </div>
+      <div class="info-block">
+        <h3>Aufbau-Logik</h3>
+        <ul>
+          <li><strong>Urgency-Header</strong> (dunkler Block, sofort sichtbar)</li>
+          <li><strong>Quick Recap</strong> aller Argumente als Checkliste</li>
+          <li><strong>Bestseller-Grid:</strong> 3 Produkte mit Originalpreis durchgestrichen + Gutscheinpreis</li>
+          <li><strong>Finales Testimonial</strong> (letzter Trust-Boost)</li>
+          <li><strong>P.S.:</strong> &bdquo;Auch ohne Gutschein bleibst du Mitglied &ndash; inklusive Kurse.&ldquo; (bindet Nicht-Kaeufer)</li>
+        </ul>
+      </div>
+      <div class="checklist">
+        <h3>Checkliste fuer euch</h3>
+        <label><input type="checkbox"/> <span class="warn">PRODUKTPREISE VERIFIZIEREN!</span> Matte &euro;79,95, Kissen &euro;49,90, Block &euro;29,90 &ndash; in Shopify pruefen</label>
+        <label><input type="checkbox"/> <span class="warn">KUNDENZITAT IST PLATZHALTER!</span> Echtes, moeglichst emotionales Review einsetzen</label>
+        <label><input type="checkbox"/> <span class="warn">3 PRODUKTBILDER NOETIG:</span> Freisteller, quadratisch, ~340x340px (Matte PURE, Kissen, Korkblock)</label>
+        <label><input type="checkbox"/> Stimmen die 3 Bestseller? Oder andere Produkte zeigen?</label>
+        <label><input type="checkbox"/> Konkreter Ablauftermin (&bdquo;gueltig bis [Datum]&ldquo;) oder &bdquo;bald ab&ldquo;?</label>
+        <label><input type="checkbox"/> P.S.-Text: Klingt wohlwollend, nicht wie &bdquo;Chance verpasst&ldquo;?</label>
+      </div>
+      <div class="do-dont" style="margin-top:12px;">
+        <div class="dont-box"><h4>Nicht aendern</h4>Urgency-Header bleibt oben. Preise durchgestrichen + Gutscheinpreis. P.S. mit Kurs-Erwaehnung bleibt. CTA-Button bewusst groesser.</div>
+        <div class="do-box"><h4>Dringlichkeit</h4>Ehrlich (&bdquo;bald ab&ldquo;), nicht manipulativ. Kein Fake-Countdown, kein &bdquo;nur noch 2 Stueck&ldquo;.</div>
+      </div>
+    </div>
+    <div class="email-preview">
+      <div class="preview-frame">
+        <div class="preview-label"><span>Email 5 &ndash; Entwurf</span><span>welcome_v2_email_5_last_chance.html</span></div>
+        <iframe class="preview-iframe" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;
+&lt;title&gt;Last Chance&lt;/title&gt;
+&lt;!--[if mso]&gt;&lt;noscript&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:AllowPNG/&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;/noscript&gt;&lt;![endif]--&gt;
+&lt;style&gt;
+  @import url(&#x27;https://static-forms.klaviyo.com/fonts/api/v1/ebANtn/custom_fonts.css&#x27;);
+  body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+  table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0;}
+  img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;display:block;}
+  a{color:#AC7800;text-decoration:underline;}
+  .price-old{text-decoration:line-through;color:#999999;}
+  .price-new{color:#AC7800;font-weight:600;}
+  @media only screen and (max-width:600px){
+    .container{width:100%!important;}
+    .mobile-padding{padding-left:20px!important;padding-right:20px!important;}
+    .product-col{width:100%!important;display:block!important;text-align:center!important;padding-bottom:20px!important;}
+    .product-col img{margin:0 auto!important;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#f5f5f0;font-family:HKGrotesk,&#x27;Helvetica Neue&#x27;,Helvetica,Arial,sans-serif;&quot;&gt;
+&lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#f5f5f0;&quot;&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:20px 10px;&quot;&gt;
+&lt;table role=&quot;presentation&quot; class=&quot;container&quot; width=&quot;600&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#ffffff;max-width:600px;width:100%;&quot;&gt;
+
+&lt;!-- LOGO --&gt;
+&lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:30px 40px 20px 40px;&quot;&gt;&lt;a href=&quot;https://www.lotuscrafts.com&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;&lt;img src=&quot;https://www.lotuscrafts.com/cdn/shop/files/lotuscrafts-logo.svg&quot; alt=&quot;Lotuscrafts&quot; width=&quot;180&quot; style=&quot;display:block;width:180px;max-width:100%;&quot;/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;!-- URGENCY HEADER --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#222427;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 6px 0;font-size:24px;line-height:28px;text-align:center;&quot;&gt;&amp;#9200;&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 4px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:20px;color:#AC7800;text-align:center;letter-spacing:3px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Dein Gutschein l&amp;#228;uft bald ab
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#cccccc;text-align:center;letter-spacing:1px;&quot;&gt;
+      Letzte Erinnerung an deinen Willkommens-Rabatt
+    &lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- INTRO --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 20px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    Namast&amp;#233; {{ first_name|default:&#x27;&#x27; }},
+  &lt;/p&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:26px;color:#222427;&quot;&gt;
+    das hier ist deine letzte Erinnerung. Dein pers&amp;#246;nlicher &lt;strong&gt;10%-Willkommens-Rabatt&lt;/strong&gt; ist nur noch kurze Zeit g&amp;#252;ltig. Danach k&amp;#246;nnen wir ihn nicht mehr anbieten.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- QUICK RECAP --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;background-color:#faf8f4;border-radius:4px;&quot;&gt;
+  &lt;tr&gt;&lt;td style=&quot;padding:24px 28px;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 12px 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:16px;color:#AC7800;letter-spacing:2px;text-transform:uppercase;font-weight:600;&quot;&gt;
+      Warum jetzt?
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 5px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;&lt;strong&gt;10% Rabatt&lt;/strong&gt; auf deine erste Bestellung &amp;#8211; bald nicht mehr verf&amp;#252;gbar&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 5px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Kostenfreier Zugang&lt;/strong&gt; zu Yoga-Kursen (bleibt bestehen)&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 5px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;&lt;strong&gt;GOTS-zertifiziert&lt;/strong&gt;, Made in Europe&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 5px 0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;&lt;strong&gt;30 Tage R&amp;#252;ckgaberecht&lt;/strong&gt; &amp;#8211; kein Risiko&lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:14px;line-height:24px;color:#222427;&quot;&gt;&amp;#10003;&amp;nbsp;&amp;nbsp;&lt;strong&gt;Flexible Zahlung:&lt;/strong&gt; Klarna, PayPal, Rechnung&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- BESTSELLER GRID --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 20px 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:16px;color:#222427;letter-spacing:2px;text-transform:uppercase;font-weight:600;text-align:center;&quot;&gt;
+    Unsere Bestseller &amp;#8211; mit deinem Gutschein
+  &lt;/p&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;
+    &lt;!-- Produkt 1 --&gt;
+    &lt;td class=&quot;product-col&quot; width=&quot;33.33%&quot; valign=&quot;top&quot; style=&quot;padding:0 6px 0 0;text-align:center;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/products/yogamatte-pure&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/170x170/f5f0eb/222427?text=Yogamatte+PURE&quot; alt=&quot;Yogamatte PURE&quot; width=&quot;170&quot; style=&quot;display:block;width:100%;max-width:170px;height:auto;margin:0 auto;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:10px 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:18px;color:#222427;font-weight:600;text-align:center;&quot;&gt;Yogamatte PURE&lt;/p&gt;
+      &lt;p style=&quot;margin:0 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#666666;text-align:center;&quot;&gt;Naturkautschuk, rutschfest&lt;/p&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:20px;text-align:center;&quot;&gt;
+        &lt;span class=&quot;price-old&quot; style=&quot;text-decoration:line-through;color:#999999;&quot;&gt;&amp;#8364;79,95&lt;/span&gt;&amp;nbsp;&amp;nbsp;
+        &lt;span class=&quot;price-new&quot; style=&quot;color:#AC7800;font-weight:600;&quot;&gt;&amp;#8364;71,96&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/td&gt;
+    &lt;!-- Produkt 2 --&gt;
+    &lt;td class=&quot;product-col&quot; width=&quot;33.33%&quot; valign=&quot;top&quot; style=&quot;padding:0 3px;text-align:center;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/products/meditationskissen&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/170x170/f5f0eb/222427?text=Meditations-+kissen&quot; alt=&quot;Meditationskissen&quot; width=&quot;170&quot; style=&quot;display:block;width:100%;max-width:170px;height:auto;margin:0 auto;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:10px 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:18px;color:#222427;font-weight:600;text-align:center;&quot;&gt;Meditationskissen&lt;/p&gt;
+      &lt;p style=&quot;margin:0 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#666666;text-align:center;&quot;&gt;Bio-Baumwolle, GOTS&lt;/p&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:20px;text-align:center;&quot;&gt;
+        &lt;span class=&quot;price-old&quot; style=&quot;text-decoration:line-through;color:#999999;&quot;&gt;&amp;#8364;49,90&lt;/span&gt;&amp;nbsp;&amp;nbsp;
+        &lt;span class=&quot;price-new&quot; style=&quot;color:#AC7800;font-weight:600;&quot;&gt;&amp;#8364;44,91&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/td&gt;
+    &lt;!-- Produkt 3 --&gt;
+    &lt;td class=&quot;product-col&quot; width=&quot;33.33%&quot; valign=&quot;top&quot; style=&quot;padding:0 0 0 6px;text-align:center;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.com/products/yoga-block-kork&quot; target=&quot;_blank&quot; style=&quot;text-decoration:none;&quot;&gt;
+        &lt;img src=&quot;https://via.placeholder.com/170x170/f5f0eb/222427?text=Korkblock+2er-Set&quot; alt=&quot;Korkblock&quot; width=&quot;170&quot; style=&quot;display:block;width:100%;max-width:170px;height:auto;margin:0 auto;&quot;/&gt;
+      &lt;/a&gt;
+      &lt;p style=&quot;margin:10px 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:18px;color:#222427;font-weight:600;text-align:center;&quot;&gt;Yoga-Block 2er-Set&lt;/p&gt;
+      &lt;p style=&quot;margin:0 0 2px 0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:16px;color:#666666;text-align:center;&quot;&gt;Naturkork, stabil&lt;/p&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:20px;text-align:center;&quot;&gt;
+        &lt;span class=&quot;price-old&quot; style=&quot;text-decoration:line-through;color:#999999;&quot;&gt;&amp;#8364;29,90&lt;/span&gt;&amp;nbsp;&amp;nbsp;
+        &lt;span class=&quot;price-new&quot; style=&quot;color:#AC7800;font-weight:600;&quot;&gt;&amp;#8364;26,91&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- TESTIMONIAL --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:16px 0;&quot;&gt;
+    &lt;p style=&quot;margin:0 0 8px 0;font-size:16px;color:#AC7800;letter-spacing:2px;text-align:center;&quot;&gt;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&amp;#9733;&lt;/p&gt;
+    &lt;p style=&quot;margin:0 0 8px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:24px;color:#222427;font-style:italic;text-align:center;&quot;&gt;
+      &amp;#8222;Ich habe lange &amp;#252;berlegt und bereue nur, dass ich nicht fr&amp;#252;her bestellt habe. Die Qualit&amp;#228;t ist jeden Cent wert.&amp;#8220;
+    &lt;/p&gt;
+    &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;letter-spacing:1px;&quot;&gt;&amp;#8211; MARIA S., VERIFIZIERTE K&amp;#196;UFERIN&lt;/p&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- COUPON + CTA --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:24px 40px 8px 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0 0 14px 0;font-family:HKGrotesk,sans-serif;font-size:15px;line-height:24px;color:#222427;text-align:center;&quot;&gt;
+    Dein pers&amp;#246;nlicher Gutscheincode:
+  &lt;/p&gt;
+  &lt;!-- Coupon --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot; style=&quot;padding:0 0 24px 0;&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border:2px dashed #AC7800;border-radius:4px;&quot;&gt;
+    &lt;tr&gt;&lt;td style=&quot;padding:12px 36px;&quot;&gt;
+      &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:20px;line-height:28px;color:#AC7800;font-weight:600;letter-spacing:4px;text-align:center;&quot;&gt;{% coupon_code &#x27;MemberOrganic&#x27; %}&lt;/p&gt;
+    &lt;/td&gt;&lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;!-- Button (groesser als ueblich) --&gt;
+  &lt;table role=&quot;presentation&quot; width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;
+  &lt;tr&gt;&lt;td align=&quot;center&quot;&gt;
+    &lt;table role=&quot;presentation&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;border-collapse:separate;&quot;&gt;
+    &lt;tr&gt;
+    &lt;td align=&quot;center&quot; valign=&quot;middle&quot; style=&quot;background:#000000;border-radius:0;mso-padding-alt:18px 48px;&quot;&gt;
+      &lt;a href=&quot;https://www.lotuscrafts.eu/?discount/{% coupon_code &#x27;MemberOrganic&#x27; %}&quot; target=&quot;_blank&quot; style=&quot;display:block;padding:18px 48px;font-family:HKGrotesk,sans-serif;font-size:13px;font-weight:400;color:#ffffff;text-decoration:none;letter-spacing:3px;line-height:100%;text-transform:uppercase;&quot;&gt;Letzte Chance &amp;#8211; jetzt 10% sichern&lt;/a&gt;
+    &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/table&gt;
+  &lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- P.S. --&gt;
+&lt;tr&gt;
+&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:28px 40px 0 40px;&quot;&gt;
+  &lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:13px;line-height:22px;color:#666666;&quot;&gt;
+    &lt;strong style=&quot;color:#222427;&quot;&gt;P.S.:&lt;/strong&gt; Auch nach Ablauf deines Gutscheins bleibst du Teil unserer Community &amp;#8211; inklusive kostenfreier &lt;a href=&quot;https://community.lotuscrafts.com&quot; style=&quot;color:#AC7800;&quot;&gt;Yoga- und Meditationskurse auf Circle&lt;/a&gt;. Wir freuen uns auf dich, ob mit oder ohne Bestellung.
+  &lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;!-- FOOTER --&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:36px 40px 12px 40px;border-top:1px solid #eeeeee;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:10px;line-height:16px;color:#999999;text-align:center;&quot;&gt;* Ausgenommen sind Produkt-Sets. Versand pauschal 4,95&amp;#8364;, ab 69&amp;#8364; versandkostenfrei (DE/AT). Alle Preise inkl. MwSt.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;font-weight:600;&quot;&gt;Lotuscrafts GmbH&lt;/p&gt;&lt;p style=&quot;margin:4px 0 0 0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#222427;text-align:center;&quot;&gt;Lange Gasse 8/3&lt;br/&gt;1080 Wien &amp;#8211; &amp;#214;sterreich&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 10px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:12px;line-height:18px;color:#666666;text-align:center;&quot;&gt;Du m&amp;#246;chtest uns kontaktieren? &lt;a href=&quot;https://www.lotuscrafts.com/pages/kontakt&quot; style=&quot;color:#AC7800;&quot;&gt;Dann klicke hier&lt;/a&gt;.&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;mobile-padding&quot; style=&quot;padding:0 40px 20px 40px;&quot;&gt;&lt;p style=&quot;margin:0;font-family:HKGrotesk,sans-serif;font-size:11px;line-height:18px;color:#999999;text-align:center;&quot;&gt;&amp;#169; 2026 Lotuscrafts &amp;#8211; All rights reserved.&lt;br/&gt;Falls du keine Newsletter mehr erhalten m&amp;#246;chtest, {% unsubscribe &#x27;klicke hier&#x27; %}.&lt;br/&gt;&lt;a href=&quot;https://www.lotuscrafts.com/policies/privacy-policy&quot; style=&quot;color:#999999;&quot;&gt;Datenschutz&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/pages/impressum&quot; style=&quot;color:#999999;&quot;&gt;Impressum&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://www.lotuscrafts.com/policies/terms-of-service&quot; style=&quot;color:#999999;&quot;&gt;AGB&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" style="width:100%;height:700px;border:none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- ASSETS                                                        -->
+<!-- ============================================================ -->
+<div class="assets-section">
+  <h2>Benoetigte Assets &ndash; Zusammenfassung</h2>
+
+  <h3 style="font-size:13px;margin:20px 0 10px 0;color:#222;">Bilder (11 Stueck)</h3>
+  <table class="assets-table">
+    <tr><th>Email</th><th>Was</th><th>Format</th><th>Briefing</th></tr>
+    <tr><td>E1</td><td>Hero-Image</td><td>600&times;280</td><td>Lifestyle, Yoga-Setting, warme Farben, natuerliches Licht</td></tr>
+    <tr><td>E1</td><td>4 Kategorie-Bilder</td><td>je 250&times;250</td><td>Yogamatten, Meditation, Zubehoer, Bekleidung</td></tr>
+    <tr><td>E2</td><td>Hero-Image</td><td>600&times;280</td><td>Person auf Lotuscrafts-Matte, natuerliches Licht</td></tr>
+    <tr><td>E3</td><td>Hero-Image</td><td>600&times;280</td><td>Morgen-Setting, einfache Yoga-Pose, Tageslicht</td></tr>
+    <tr><td>E4</td><td>Produkt-Detail</td><td>600&times;180</td><td>Matte Nahaufnahme, Materialstruktur sichtbar (Kork/Kautschuk)</td></tr>
+    <tr><td>E5</td><td>3 Produkt-Freisteller</td><td>je 340&times;340</td><td>Yogamatte PURE, Meditationskissen, Korkblock 2er-Set</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;margin:24px 0 10px 0;color:#222;">Kundenzitate (5 Stueck) <span class="tag">PLATZHALTER ERSETZEN</span></h3>
+  <table class="assets-table">
+    <tr><th>Email</th><th>Wo</th><th>Was wird gebraucht</th></tr>
+    <tr><td>E2</td><td>3 Bewertungskarten</td><td>Je 2-3 Saetze, 5 Sterne, Vorname + Initial. 1&times; Matte, 1&times; Kissen, 1&times; Zubehoer</td></tr>
+    <tr><td>E4</td><td>FAQ &bdquo;Bin ich erfahren genug?&ldquo;</td><td>1 Zitat einer Anfaengerin, 2 Saetze</td></tr>
+    <tr><td>E5</td><td>Finales Testimonial</td><td>1 starkes Zitat, 1-2 Saetze, moeglichst emotional</td></tr>
+  </table>
+
+  <h3 style="font-size:13px;margin:24px 0 10px 0;color:#222;">Fakten-Check</h3>
+  <table class="assets-table">
+    <tr><th>Was</th><th>Pruefen</th><th>Wer</th></tr>
+    <tr><td>Produktpreise E5</td><td>Matte &euro;79,95, Kissen &euro;49,90, Block &euro;29,90</td><td>E-Commerce</td></tr>
+    <tr><td>Trust-Zahlen</td><td>&bdquo;10.000+ Yogis&ldquo;, &bdquo;4,8/5 Sterne&ldquo;</td><td>Marketing</td></tr>
+    <tr><td>Rueckgabefrist</td><td>30 Tage? (gesetzlich 14 &ndash; 30 waere USP)</td><td>E-Commerce</td></tr>
+    <tr><td>Zahlungsarten</td><td>Klarna, PayPal, Visa, Rechnungskauf aktiv?</td><td>E-Commerce</td></tr>
+    <tr><td>Origin-Story</td><td>Formulierung freigeben</td><td>Wolfgang</td></tr>
+    <tr><td>Circle-URL</td><td>Korrekter Link zur Community-Plattform</td><td>Marketing</td></tr>
+  </table>
+</div>
+
+<!-- ============================================================ -->
+<!-- TIMELINE                                                      -->
+<!-- ============================================================ -->
+<div class="timeline">
+  <h2>Timeline</h2>
+  <table class="timeline-table">
+    <tr><td>Copy-Review aller 6 Emails</td><td>Copy-Team</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Kundenzitate auswaehlen (5 Stueck)</td><td>Copy / CRM</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Bilder bereitstellen (11 Stueck)</td><td>Creative</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Produktpreise + Zahlungsarten + Rueckgabe verifizieren</td><td>E-Commerce</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Origin-Story Freigabe</td><td>Wolfgang</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Finale HTML-Templates bauen</td><td>CRM / Dev</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Klaviyo-Setup (Flow, Trigger, Splits)</td><td>CRM</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>QA + Mobile-Test</td><td>Alle</td><td style="color:#666;">&#9744;</td></tr>
+    <tr><td>Go-Live</td><td>CRM</td><td style="color:#666;">&#9744;</td></tr>
+  </table>
+</div>
+
+<p style="text-align:center;font-size:12px;color:#999;margin-top:40px;">
+  Bei Fragen: CRM / Retention &middot; HTML-Templates: <code>templates/welcome_v2_*.html</code>
+</p>
+
+</div>
+</body>
+</html>
